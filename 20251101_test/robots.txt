@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://dgs.com.tw/test-landing-page/sitemap.xml

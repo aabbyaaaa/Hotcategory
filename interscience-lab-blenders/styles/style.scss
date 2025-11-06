@@ -1,0 +1,1385 @@
+@import "reset"; // or @use 'reset';
+
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("../Helvetica.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+$sticky-bg: #ededed;
+$menu-hover-color: rgb(0, 129, 192);
+$menu-bg-mobile: #333;
+$menu-active-bg: #0081a4;
+$menu-hover-bg-mobile: rgb(38, 183, 188);
+$text-color: #333;
+$text-color-light: #dededf;
+$themecolor: #00a94f;
+
+body {
+  background-color: #dededf;
+  font-family: "MyCustomFont", sans-serif;
+}
+
+/*menu開始*/
+
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #ededed;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 10px 10px 5px 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.menu-wrap {
+  display: flex;
+  width: 1200px;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.logo img {
+  height: 40px;
+  margin-top: 5px;
+}
+
+@media (max-width: 599px) {
+  /*.logo {
+      margin: 0 auto;
+    }  這個不需要，因為這個我的手機版LOGO一直*/
+
+  .logo img {
+    padding-left: 0px;
+    margin: 0;
+  }
+}
+
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.menu li {
+  margin: 5px 15px;
+}
+.menu a {
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  padding: 10px;
+  padding-bottom: 15px; /*不讓hover的時候動來動去，就改這個*/
+  text-align: center;
+}
+
+.menu a:hover {
+  color: #00a94f;
+  border-bottom: 3px solid #00a94f;
+  font-size: 16px;
+  display: block;
+  padding: 10px;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #333;
+    text-align: center;
+  }
+  .menu.active {
+    display: flex;
+    background-color: #0081a4;
+  }
+  .menu li {
+    margin: 10px 0;
+  }
+  .menu-toggle {
+    display: block;
+    padding-right: 50px;
+    padding-top: 10px;
+  }
+  .menu-wrap {
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+
+  .menu a {
+    color: #dededf;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .menu a:hover {
+    background-color: rgb(38, 183, 188);
+    font-size: 16px;
+    display: block;
+    padding: 10px;
+    color: #dededf;
+    border-bottom: none;
+  }
+}
+
+/* floating-menu 右側浮動欄位 */
+.floating-menu {
+  position: fixed;
+  top: 50%;
+  right: 10px; /* 緊貼螢幕右邊，留 5px 間距 */
+  transform: translateY(-50%);
+  z-index: 9000;
+  max-width: calc(1440px - 5px); /* 避免超過 1440px 的範圍 */
+}
+
+.menu-item2 {
+  display: block;
+  margin: 10px 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-item2 img {
+  width: 50px;
+  height: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-item2:hover {
+  transform: scale(1.1); /* 增大圖片，創建懸浮效果 */
+  opacity: 0.9;
+}
+
+.menu-item2.active {
+  opacity: 1;
+  border: 2px solid #000;
+  transform: scale(1.1); /* 選中後放大 */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* 當螢幕寬度超過 1200px 時 */
+@media (min-width: 1200px) {
+  .floating-menu {
+    right: max(10px, calc((100vw - 1600px) / 2 + 5px));
+  }
+}
+
+/* 當螢幕寬度小於 768px 時，隱藏浮動欄位 */
+@media (max-width: 768px) {
+  .floating-menu {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/*CSS 設計，讓按鈕固定在右下角*/
+// Floating Button
+
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  right: max(10px, calc((100vw - 1600px) / 2 + 5px));
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.floating-btn:hover {
+  transform: scale(1.1);
+}
+
+.chat-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .floating-btn {
+    opacity: 0;
+    pointer-events: none;
+    bottom: 10px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .chat-icon {
+    width: 50%;
+    height: 90%;
+    object-fit: cover;
+  }
+}
+
+/*複製以上內容：上面為floating menu+LINE*/
+/*複製以上內容：上面為floating menu+LINE*/
+/*複製以上內容：上面為floating menu+LINE*/
+/*複製以上內容：上面為floating menu+LINE*/
+/*複製以上內容：上面為floating menu+LINE*/
+/*複製以上內容：上面為floating menu+LINE*/
+
+/*下面為main*/
+
+.banner {
+  width: 100%;
+  display: flex;
+  background: #0091ae;
+  position: relative;
+  justify-content: center;
+  overflow: hidden;
+
+  .banner-image {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+
+    img {
+      width: 90vw;
+      max-width: 1440px;
+    }
+  }
+  .banner-text {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    color: black;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 5px;
+
+    h1 {
+      font-size: 36px;
+      margin: 0;
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: #00a94f;
+    }
+    p {
+      font-size: 20px;
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .banner-text {
+    width: 40vw;
+    align-items: center;
+    padding: 5px;
+  }
+  .banner-text h1 {
+    font-size: 24px !important;
+    margin: 0 !important;
+    font-weight: 700 !important;
+    color: #00a94f !important;
+  }
+  .banner-text p {
+    font-size: 20px !important;
+    line-height: 1.3 !important;
+    margin-top: 5px !important;
+    display: none;
+  }
+
+  .banner .banner-image img {
+    width: 100vw;
+  }
+}
+
+/* BANNER結束*/
+
+main {
+  background-color: #dededf;
+}
+
+/* 鐵胃均質機系列 bagmixer-intro開始*/
+.bagmixer-intro {
+  width: 90vw; // 設為跟 .banner img 一樣
+  max-width: 1440px; // 確保不超過最大寬度
+  margin: 0 auto; // 置中
+  background-color: #fff;
+  padding: 50px;
+  box-sizing: border-box;
+  display: flex;
+
+  .bagmixer-intro-text {
+    flex: 1 1 40%; // 確保它占 70%
+
+    .bagmixer-intro-title {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start; // 讓內容靠左對齊
+      width: fit-content; // 讓寬度剛好符合內容
+      max-width: 600px; // 限制最大寬度
+      margin-bottom: 20px;
+      border-bottom: 5px solid #00a94f;
+      flex-wrap: wrap; // 讓內容可以換行，避免擠壓變形
+
+      img {
+        flex: 0 1 auto; // 讓圖片維持自己的大小，不會被壓縮
+        max-width: 200px;
+        height: auto;
+      }
+
+      h2 {
+        flex: 1; // 讓 h2 佔據剩餘空間
+        min-width: 150px; // 避免 h2 太窄導致換行
+        font-size: 1.8rem;
+        color: #00a94f;
+        font-weight: 700;
+        text-align: center;
+      }
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin: 25px 0px;
+    }
+
+    /* 列表樣式 */
+    .triangle-list {
+      list-style: none; /* 移除默认的列表符号 */
+      padding-left: 0;
+    }
+
+    .triangle-list li {
+      position: relative;
+      padding-left: 20px; /* 给图标留出空间 */
+      line-height: 2;
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .triangle-list li::before {
+      content: "▶"; /* 你可以换成 "▲" 或 "▼" */
+      position: absolute;
+      left: 0;
+      padding-top: 3px;
+      color: #00a94f; /* 可以换成你想要的颜色 */
+      font-size: 16px;
+    }
+  }
+
+  .bagmixer-intro-img {
+    flex: 1 1 60%; // 確保它占 30%
+
+    img {
+      width: 100%; // 讓它填滿 .bagmixer-intro-img，而不超出範圍
+      max-width: 100%; // 確保不會超過父層
+      height: auto; // 保持比例
+    }
+  }
+}
+
+/* RWD 設定 */
+@media (max-width: 768px) {
+  .bagmixer-intro {
+    width: 95vw;
+    flex-direction: column; // 小螢幕改為垂直排列
+    padding: 15px;
+  }
+
+  .bagmixer-intro-text {
+    width: 100%;
+  }
+
+  .bagmixer-intro-title {
+    /*flex-direction: column; // 小螢幕改為垂直排列*/
+    width: 100%;
+
+    justify-content: center;
+  }
+
+  .bagmixer-intro-title img,
+  .bagmixer-intro-title h2 {
+    flex-basis: 100%; // 讓它們各佔一整行
+    width: 100%; // 滿版
+    max-width: 100%;
+    font-size: 1.5rem !important;
+  }
+}
+
+/* 鐵胃均質機系列 bagmixer-intro 結束 */
+/* 鐵胃均質機系列 minimix100-container開始*/
+
+.minimix100-container {
+  width: 90vw; // 設為跟 .banner img 一樣
+  max-width: 1440px; // 確保不超過最大寬度
+  margin: 0 auto; // 置中
+  background-color: #f5fff8;
+  padding: 50px;
+  box-sizing: border-box;
+
+  .minimix100-text {
+    padding-bottom: 40px;
+
+    .minimix100-title {
+      display: flex;
+      align-items: center; // 垂直置中
+      justify-content: flex-start; // 確保 img & h2 不會被推開
+      width: fit-content; // 讓寬度根據內容自適應
+      margin-bottom: 20px; // 增加間距
+      border-bottom: 5px solid #00a94f;
+
+      img {
+        flex: 0 1 auto; // 让 img 维持原始大小
+        max-width: 200px;
+        height: auto;
+      }
+
+      h2 {
+        flex: 1; // 让 h2 吃掉剩余空间
+        min-width: 150px; // 避免 h2 过窄
+        font-size: 1.8rem;
+        color: #00a94f;
+        font-weight: 700;
+        text-align: center;
+      }
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1;
+      margin: 25px 0px;
+
+      &.small {
+        // 用 class 取代 id
+        font-size: 16px;
+        color: #999;
+      }
+    }
+  }
+
+  /*.備註：：：：bagmixer-intro-text100 > minimix100-text*/
+
+  /*.備註：：：：bagmixer-intro-title100 > minimix100-title*/
+
+  /* RWD 設定 */
+  @media (max-width: 768px) {
+    width: 95vw !important;
+    flex-direction: column;
+    padding: 15px;
+
+    .minimix100-text {
+      width: 100%;
+    }
+    .minimix100-title {
+      width: 100%;
+      justify-content: center;
+    }
+    .minimix100-title img,
+    .minimix100-title h2 {
+      flex-basis: 100%;
+      width: 100%;
+      max-width: 100%;
+      font-size: 1.5rem !important;
+    }
+  }
+}
+
+/*.備註：：：：bagmixer-product-100-item-all > minimix100-product-container*/
+/*.備註：：：：bagmixer-product-100-item > minimix100-product*/
+/*.備註：：：：bagmixer-product-100-card > minimix100-product-card*/
+
+.minimix100-product-container {
+  max-width: 1440px; // 確保不超過最大寬度
+  margin: 0 auto; // 置中
+  background-color: #f5fff8;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  a {
+    display: block;
+    font-size: 16px;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    color: #333;
+    align-items: center;
+  }
+
+  .minimix100-product {
+    display: flex;
+    flex: 2 1 65%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 65%;
+
+    .minimix100-product-card {
+      padding: 40px 30px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      border-radius: 10px;
+      transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 320px;
+
+      &:hover {
+        border: 2px solid #00a94f;
+        transform: scale(1);
+      }
+
+      h3 {
+        font-size: 1.7rem;
+        font-weight: 600;
+        color: $themecolor;
+      }
+
+      img {
+        padding: 40px 0;
+      }
+
+      li {
+        line-height: 2;
+        position: relative;
+        padding-left: 20px;
+
+        &::before {
+          content: "●"; /* 圓圈 */
+          color: #00a94f; /* 設定圓圈顏色 */
+          font-size: 14px;
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+      }
+    }
+  }
+
+  /* RWD 設定 */
+  @media (max-width: 768px) {
+    .minimix100-container {
+      width: 95vw !important;
+      flex-direction: column; // 小螢幕改為垂直排列
+      padding: 15px;
+    }
+
+    .minimix100-text {
+      width: 100%;
+    }
+
+    .minimix100-title {
+      /*flex-direction: column; // 小螢幕改為垂直排列*/
+      width: 100%;
+
+      justify-content: center;
+    }
+
+    .minimix100-title img,
+    .minimix100-title h2 {
+      flex-basis: 100%; // 讓它們各佔一整行
+      width: 100%; // 滿版
+      max-width: 100%;
+      font-size: 1.5rem !important;
+    }
+  }
+
+  .greenbox-all {
+    flex: 1 1 35%;
+    max-width: 35%;
+    justify-content: center;
+
+    .greenbox {
+      border: 2px solid #00a94f;
+      padding: 15px;
+      width: 100%;
+      max-width: 350px;
+      border-radius: 10px;
+      margin: 10px auto;
+      margin-top: 0px;
+      min-width: 300px;
+
+      h2 {
+        color: #00a94f;
+        font-size: 20px;
+        font-weight: 600;
+        padding-bottom: 20px;
+      }
+      ul {
+        line-height: 1.5;
+
+        &.dot {
+          list-style: none; // 先移除預設樣式
+          padding-left: 0; // 移除預設縮排
+
+          li {
+            position: relative; // 讓 ::before 依附在每個 li 上
+            padding-left: 25px; // 給圓圈留出空間
+            line-height: 1.8; // 統一與 .advantages 的行距
+
+            &::before {
+              content: "●"; // 圓圈符號
+              color: #00a94f; // 設定綠色
+              font-size: 14px; // 調整大小
+              position: absolute;
+              left: 0;
+              top: 5px; // 微調對齊效果
+            }
+          }
+        }
+
+        &.advantages {
+          list-style: none; // 移除預設樣式
+
+          li {
+            position: relative;
+            padding-left: 25px;
+            line-height: 1.8; // 統一行距
+
+            &::before {
+              content: "▶"; // 依舊使用箭頭
+              color: #00a94f;
+              position: absolute;
+              left: 0;
+              top: 5px;
+            }
+          }
+        }
+      }
+    }
+    .spec-table {
+      width: 100%;
+      max-width: 390px;
+      border-collapse: collapse;
+      margin: 10px auto;
+      text-align: center;
+      border: 2px solid #999;
+      min-width: 350px;
+    }
+
+    .green {
+      color: #00a94f;
+    }
+
+    .spec-table th,
+    .spec-table td {
+      border: 1px solid #999;
+      padding: 10px;
+    }
+
+    .spec-table th {
+      background-color: #dcdcdc;
+      font-weight: bold;
+    }
+
+    .spec-table tr:nth-child(odd) {
+      background-color: #f8f8f8;
+    }
+  }
+}
+
+@media (max-width: 798px) {
+  .minimix100-product-container {
+    flex-direction: column !important; // 小螢幕改為垂直排列
+    align-items: left; // 水平置中子項目
+
+    .minimix100-product-card {
+      margin-bottom: 20px;
+    }
+
+    .greenbox-all {
+      width: 50vw;
+    }
+  }
+  .greenbox {
+    min-width: 350px !important;
+  }
+}
+
+@media (max-width: 599px) {
+  .spec-table {
+    max-width: 100%;
+    min-width: 350px;
+  }
+}
+
+/* 鐵胃均質機系列 minimix100-container結束*/
+
+.bagmixer400-container {
+  width: 90vw; // 設為跟 .banner img 一樣
+  max-width: 1440px; // 確保不超過最大寬度
+  margin: 0 auto; // 置中
+  background-color: #fff;
+  padding: 50px;
+  box-sizing: border-box;
+
+  .bagmixer400-text {
+    padding-bottom: 40px;
+
+    .bagmixer400-title {
+      display: flex;
+      align-items: center; // 垂直置中
+      justify-content: flex-start; // 確保 img & h2 不會被推開
+      width: fit-content; // 讓寬度根據內容自適應
+      margin-bottom: 20px; // 增加間距
+      border-bottom: 5px solid #00a94f;
+
+      img {
+        flex: 0 1 auto; // 让 img 维持原始大小
+        max-width: 200px;
+        height: auto;
+      }
+
+      h2 {
+        flex: 1; // 让 h2 吃掉剩余空间
+        min-width: 150px; // 避免 h2 过窄
+        font-size: 1.8rem;
+        color: #00a94f;
+        font-weight: 700;
+        text-align: center;
+      }
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1;
+      margin: 25px 0px;
+
+      &.small {
+        // 用 class 取代 id
+        font-size: 16px;
+        color: #999;
+      }
+    }
+  }
+}
+
+/* RWD 設定 */
+@media (max-width: 768px) {
+  .bagmixer400-container {
+    width: 95vw !important;
+    flex-direction: column; // 小螢幕改為垂直排列
+    padding: 15px;
+  }
+
+  .bagmixer400-text {
+    width: 100%;
+    padding-bottom: 0px !important;
+  }
+
+  .bagmixer400-title {
+    /*flex-direction: column; // 小螢幕改為垂直排列*/
+    width: 100%;
+    justify-content: center;
+  }
+  .bagmixer400-title img,
+  .bagmixer400-title h2 {
+    flex-basis: 100%; // 讓它們各佔一整行
+    width: 100%; // 滿版
+    max-width: 100%;
+    font-size: 1.5rem !important;
+  }
+}
+
+.table-container {
+  overflow-x: auto; /* 讓小螢幕可水平滾動 */
+  padding: 10px;
+}
+
+/* 設定表格樣式 */
+table {
+  width: 100%;
+  max-width: 1400px;
+  margin: auto;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  background-color: #4caf50;
+  color: white;
+  font-weight: 600;
+}
+
+.white {
+  background-color: white;
+  color: #333;
+
+  img {
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+td {
+  font-size: 16px;
+}
+
+/* RWD 設定：手機版 */
+@media (max-width: 768px) {
+  table {
+    font-size: 14px;
+  }
+  th,
+  td {
+    padding: 8px;
+  }
+
+  .white img {
+    width: 20vw;
+  }
+  /* 僅調整第一欄的寬度 */
+  table th:first-child,
+  table td:first-child {
+    width: 200px; /* 根據需求調整寬度 */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+/* HOVER 效果：當滑鼠移到某一列 */
+tr:hover {
+  background-color: #f5fff8;
+}
+
+/* HOVER 效果：當滑鼠移到某一欄 */
+table td:hover {
+  background-color: #c6e9ec;
+}
+
+/* BagMixer 400毫升 鐵胃均質機 獨家技術開始*/
+
+.bagmixer-technology {
+  width: 90vw; // 設為跟 .banner img 一樣
+  max-width: 1440px; // 確保不超過最大寬度
+  margin: 0 auto; // 置中
+  background-color: #fff;
+  padding: 50px;
+  box-sizing: border-box;
+
+  .bagmixer-technology-title {
+    display: flex;
+    align-items: center; // 垂直置中
+    justify-content: flex-start; // 確保 img & h2 不會被推開
+    width: fit-content; // 讓寬度根據內容自適應
+    margin-bottom: 50px; // 增加間距
+    border-bottom: 5px solid #00a94f;
+
+    img {
+      flex: 0 1 auto; // 让 img 维持原始大小
+      max-width: 500px;
+      height: auto;
+    }
+
+    h2 {
+      flex: 1; // 让 h2 吃掉剩余空间
+      min-width: 150px; // 避免 h2 过窄
+      font-size: 1.8rem;
+      color: #00a94f;
+      font-weight: 700;
+      text-align: center;
+    }
+  }
+  p {
+    font-size: 1.1rem;
+    line-height: 1;
+    margin: 25px 0px;
+  }
+
+  .bagmixer-technology-pic {
+    img {
+      width: 85vw;
+      max-width: 1360px;
+    }
+  }
+}
+
+/* RWD 設定 */
+@media (max-width: 768px) {
+  .bagmixer-technology {
+    width: 95vw !important;
+    flex-direction: column; // 小螢幕改為垂直排列
+    padding: 15px;
+  }
+
+  .bagmixer-technology-text {
+    width: 100%;
+  }
+
+  .bagmixer-technology-title {
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+  }
+  .bagmixer-technology-title img,
+  .bagmixer-technology-title h2 {
+    flex-basis: 100%; // 讓它們各佔一整行
+    width: 100%; // 滿版
+    max-width: 100%;
+    font-size: 1.5rem !important;
+  }
+}
+
+/* BagMixer 400毫升 鐵胃均質機 獨家技術結束*/
+
+/* 3500毫升 鐵胃均質機 獨家技術開始*/
+
+.jumboMix3500-container {
+  width: 90vw; // 設為跟 .banner img 一樣
+  max-width: 1440px; // 確保不超過最大寬度
+  margin: 0 auto; // 置中
+  background-color: #f5fff8;
+  padding: 50px;
+  box-sizing: border-box;
+
+  .jumboMix3500-text {
+    padding-bottom: 40px;
+
+    .jumboMix3500-title {
+      display: flex;
+      align-items: center; // 垂直置中
+      justify-content: flex-start; // 確保 img & h2 不會被推開
+      width: fit-content; // 讓寬度根據內容自適應
+      margin-bottom: 20px; // 增加間距
+      border-bottom: 5px solid #00a94f;
+
+      img {
+        flex: 0 1 auto; // 让 img 维持原始大小
+        max-width: 200px;
+        height: auto;
+      }
+
+      h2 {
+        flex: 1; // 让 h2 吃掉剩余空间
+        min-width: 150px; // 避免 h2 过窄
+        font-size: 1.8rem;
+        color: #00a94f;
+        font-weight: 700;
+        text-align: center;
+      }
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1;
+      margin: 25px 0px;
+
+      &.small {
+        // 用 class 取代 id
+        font-size: 16px;
+        color: #999;
+      }
+    }
+  }
+}
+
+/* RWD 設定 */
+@media (max-width: 768px) {
+  .jumboMix3500-container {
+    width: 95vw !important;
+    flex-direction: column; // 小螢幕改為垂直排列
+    padding: 15px;
+  }
+
+  .jumboMix3500-text {
+    width: 100%;
+  }
+
+  .jumboMix3500-title {
+    /*flex-direction: column; // 小螢幕改為垂直排列*/
+    width: 100%;
+
+    justify-content: center;
+  }
+
+  .jumboMix3500-title img,
+  .jumboMix3500-title h2 {
+    flex-basis: 100%; // 讓它們各佔一整行
+    width: 100%; // 滿版
+    max-width: 100%;
+    font-size: 1.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .jumboMix3500-product-card {
+    margin-bottom: 20px;
+  }
+
+  .greenbox {
+    min-width: 350px !important;
+  }
+}
+
+@media (max-width: 599px) {
+  .spec-table {
+    max-width: 100%;
+    min-width: 550px;
+  }
+}
+
+.jumboMix3500-product-container {
+  max-width: 1440px; // 確保不超過最大寬度
+  margin: 0 auto; // 置中
+  background-color: #f5fff8;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  a {
+    display: block;
+    font-size: 16px;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    color: #333;
+    align-items: center;
+  }
+
+  .jumboMix3500-product {
+    display: flex;
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 100%;
+
+    .jumboMix3500-product-card {
+      padding: 40px 30px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      border-radius: 10px;
+      transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 320px;
+
+      &:hover {
+        border: 2px solid #00a94f;
+        transform: scale(1);
+      }
+
+      h3 {
+        font-size: 1.7rem;
+        font-weight: 600;
+        color: $themecolor;
+      }
+
+      img {
+        padding: 40px 0;
+      }
+
+      li {
+        line-height: 2;
+        position: relative;
+        padding-left: 20px;
+
+        &::before {
+          content: "●"; /* 圓圈 */
+          color: #00a94f; /* 設定圓圈顏色 */
+          font-size: 14px;
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+      }
+    }
+  }
+
+  .bagmixer-container3 {
+    display: flex;
+    box-sizing: border-box;
+    max-width: 1440px;
+    width: 100%;
+    justify-content: space-between; /* 讓兩個區塊平均分布 */
+    align-items: flex-start; /* 頂端對齊 */
+    gap: 20px; /* 設定間距 */
+    padding: 0px 50px 30px 50px;
+
+    .greenbox-all2 {
+      margin-right: 30px;
+      display: flex;
+
+      .greenbox2 {
+        border: 2px solid #00a94f;
+        padding: 30px;
+        margin: 30px 20px 30px 10px;
+        width: 100%;
+        max-width: 280px;
+        border-radius: 10px;
+        backdrop-filter: blur(10px); /* 霧玻璃效果 */
+        -webkit-backdrop-filter: blur(10px); /* Safari 相容性 */
+
+        ul {
+          line-height: 1.5;
+
+          &.dot {
+            list-style: none; // 先移除預設樣式
+            padding-left: 0; // 移除預設縮排
+
+            li {
+              position: relative; // 讓 ::before 依附在每個 li 上
+              padding-left: 25px; // 給圓圈留出空間
+              line-height: 1.8; // 統一與 .advantages 的行距
+
+              &::before {
+                content: "●"; // 圓圈符號
+                color: #00a94f; // 設定綠色
+                font-size: 14px; // 調整大小
+                position: absolute;
+                left: 0;
+                top: 5px; // 微調對齊效果
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .greenbox3 {
+    border: 2px solid #00a94f;
+    padding: 30px;
+    margin: 30px 10px 30px 20px;
+    width: 100%;
+    max-width: 350px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px); /* 霧玻璃效果 */
+    -webkit-backdrop-filter: blur(10px); /* Safari 相容性 */
+  }
+
+  .greenbox2 h2 {
+    color: #00a94f;
+    font-size: 20px;
+    font-weight: 600;
+    padding-bottom: 20px;
+  }
+
+  .greenbox2 ul {
+    list-style-type: none;
+    padding-left: 20px;
+    line-height: 1.6;
+  }
+
+  .advantages2 li::before {
+    content: "▶";
+    color: #00a94f;
+    margin-right: 8px;
+  }
+
+  .spec-table2 {
+    width: 100%;
+    max-width: 700px;
+    border-collapse: collapse;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #999;
+
+    .green {
+      color: #00a94f;
+    }
+  }
+
+  @media (max-width: 798px) {
+    .spec-table {
+      max-width: 500px;
+    }
+  }
+
+  #small {
+    font-size: 16px;
+    color: #999;
+  }
+
+  .spec-table2 th,
+  .spec-table2 td {
+    border: 1px solid #999;
+    padding: 10px;
+    text-align: center; /* 水平置中 */
+    vertical-align: middle; /* 垂直置中 */
+  }
+
+  .spec-table2 th {
+    background-color: #dcdcdc;
+    font-weight: bold;
+  }
+
+  .spec-table2 tr:nth-child(odd) {
+    background-color: #f8f8f8;
+  }
+
+  .spec-table2 th:first-child,
+  .spec-table2 td:first-child {
+    width: 150px; /* 你可以根據需求調整數值 */
+  }
+
+  .spec-table2 td:nth-child(2) {
+    width: 100px;
+  }
+  .spec-table2 td:nth-child(3) {
+    width: 100px;
+  }
+  .spec-table2 td:nth-child(4) {
+    width: 120px;
+  }
+  @media (max-width: 798px) {
+    .bagmixer-container3 {
+      display: flex;
+      justify-content: flex-end; // 水平置中子項目
+    }
+
+    .greenbox-all2 {
+      display: flex;
+      flex-direction: column;
+    }
+    .spec-table2 {
+      display: flex;
+      max-width: 500px;
+    }
+  }
+}
+
+/*適用於微生物學的全系列產品開始*/
+
+.all-product {
+  width: 90vw;
+  max-width: 1440px; // 確保不超過最大寬度
+  margin: 0 auto; // 置中
+  background-color: #fff;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+h1.all {
+  font-size: 36px;
+  margin: 0 auto;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  color: #00a94f;
+}
+
+.product-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  padding: 50px;
+}
+
+.product {
+  text-align: center;
+  position: relative;
+  width: 150px;
+  margin: 30px;
+}
+
+.product a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  transition: transform 0.3s ease-in-out;
+}
+
+.product a:hover {
+  transform: scale(1.1);
+}
+
+.product img {
+  width: 100%;
+  padding-bottom: 10px;
+  display: block;
+}
+
+.product .label {
+  margin-top: 8px;
+  font-size: 18px;
+}
+
+/* Hover 綠色底線 */
+.product::after {
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background-color: #00a94f;
+  transition: width 0.3s ease-in-out;
+}
+
+.product:hover::after {
+  width: 100%;
+}
+
+/* RWD 響應式設計 */
+@media (max-width: 768px) {
+  .all-product {
+    width: 95vw;
+
+    h1.all {
+      font-size: 26px;
+      padding-bottom: 0px;
+    }
+  }
+
+  .product-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-items: center;
+  }
+
+  .product {
+    width: 50%;
+    max-width: 250px;
+    margin: 10px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .product {
+    width: 50%;
+    max-width: 250px;
+  }
+}
+/*適用於微生物學的全系列產品結束*/

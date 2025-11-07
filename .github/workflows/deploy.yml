@@ -37,6 +37,6 @@ jobs:
             
             # 2. 執行您的 sh 檔案
             # 務必使用絕對路徑，或確保您已 cd 到正確目錄
-            /bin/bash /var/www/auto_deploy.sh
+            sudo /bin/bash /var/www/auto_deploy.sh
             
             echo "Script execution finished."

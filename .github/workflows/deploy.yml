@@ -1,0 +1,42 @@
+name: Deploy to Server
+ 
+# 觸發條件：當 push 到 main 分支時
+on:
+  push:
+    branches:
+      - main  # 您可以改成您的主要分支，例如 master
+ 
+# 要執行的工作
+jobs:
+  # 工作的 ID
+  deploy:
+    # 運行的虛擬機環境
+    runs-on: ubuntu-latest
+ 
+    # 步驟
+    steps:
+      - name: Run deployment script on server
+        # 使用 appleboy/ssh-action
+        uses: appleboy/ssh-action@v1.0.3
+ 
+        # 帶入參數
+        with:
+          # 從 Secrets 讀取主機資訊
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY2 }}
+          port: ${{ secrets.SSH_PORT || 22 }} # 如果有設 SSH_PORT 就用，沒有就用 22
+ 
+          # 要在遠端主機上執行的命令
+          script: |
+            echo "Connected to server"
+            echo "Running deployment script..."
+            
+            # 1. 進入您的專案目錄 (可選，但推薦)
+            # cd /var/www/my-laravel-project
+            
+            # 2. 執行您的 sh 檔案
+            # 務必使用絕對路徑，或確保您已 cd 到正確目錄
+            /bin/bash /var/www/auto_deploy.sh
+            
+            echo "Script execution finished."

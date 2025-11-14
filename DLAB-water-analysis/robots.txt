@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://dgs.com.tw
+Sitemap: https://dgs.com.tw/hotcategory/DLAB-water-analysis/sitemap.xml

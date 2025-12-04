@@ -1,4 +1,0 @@
-User-Agent: *
-Allow: /
-
-Sitemap: https://dgs.com.tw/hotcategory/20251107-333333/sitemap.xml

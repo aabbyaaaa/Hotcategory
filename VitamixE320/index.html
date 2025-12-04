@@ -25,7 +25,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- 搜尋引擎優化 (SEO) -->
 <meta name="description" content="限時獨家特談組｜Vitamix E320 全食物調理機限時優惠中，再送 5 大好禮！數量有限，錯過只能買貴。立即私訊 LINE 下單！">
 <meta name="keywords" content="Vitamix, E320, 全食物調理機, 食品調理機, 高速果汁機, 食譜機, 特談優惠, 限時優惠, 養生調理機, 陳月卿推薦, 私訊下單">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, nofollow">
 
 <!-- Open Graph 標籤（社群分享）-->
 <meta property="og:title" content="Vitamix E320 限時優惠｜獨家特談組享限時特價 + 五大贈禮，只在 LINE 好友限定！">
@@ -958,7 +958,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="banner">
             <a href="https://lin.ee/doGYkLf" target="_blank">
-        <img src="https://cdn.shopify.com/s/files/1/0204/3327/2854/files/2926x1167-_-_0815.jpg?v=1755245212" alt="主視覺橫幅">
+        <img src="https://dgs.com.tw/pic/00/01/42/11-de5125dddaa29c23.jpg" alt="主視覺橫幅">
         </a>
     </div>
 
@@ -1078,7 +1078,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       <a href="https://lin.ee/doGYkLf" target="_blank">
                       <img
             
-                        src="https://cdn.shopify.com/s/files/1/0204/3327/2854/files/0815-2.jpg?v=1755246885"
+                        src="https://dgs.com.tw/pic/00/01/42/14-ad027c6040404c77.jpg"
                         class="vc_single_image-img attachment-full"
                         alt="比較表"
                         loading="lazy"
@@ -1092,7 +1092,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="vc_single_image-wrapper vc_box_border_grey">
                       <img
             
-                        src="https://cdn.shopify.com/s/files/1/0204/3327/2854/files/0815.jpg?v=1755245212"
+                        src="https://dgs.com.tw/pic/00/01/42/13-1eaf09cd1bea5d17.jpg"
                         class="vc_single_image-img attachment-full"
                         alt="內容物"
                         loading="lazy"
@@ -1408,7 +1408,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 <div class="wpb_text_column wpb_content_element">
                   <div class="wpb_wrapper">
-                    <h2 style="text-align: center">Vitamix E320常見問題XQQQQQQQQ</h2>
+                    <h2 style="text-align: center">Vitamix E320常見問題</h2>
                   </div>
                 </div>
                 <div
@@ -1609,25 +1609,89 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // ====================================
 // header
 // ====================================
-// ====================================
-// 時間設定區域 - 請在這裡修改你的截止時間
-// ====================================
-const deadline = new Date("2025-08-19T23:59:00").getTime();
-
-// 其他可選設定
+// 倒數計時設定
 const brandName = "德記";
 const countdownTitle = "⏰ Vitamix 獨家特談組 限時開搶";
 const ctaButtonText = "";
+
+const STORAGE_KEY = "vitamix_countdown_deadline";
+const MIN_COUNTDOWN_HOURS = 1;
+const MAX_COUNTDOWN_HOURS = 72;
+
+let deadline = null;
+let countdownTimer = null;
+let hasExpiredHandled = false;
+
+function getRandomDeadline() {
+  const now = Date.now();
+  const hours =
+    Math.floor(Math.random() * (MAX_COUNTDOWN_HOURS - MIN_COUNTDOWN_HOURS + 1)) +
+    MIN_COUNTDOWN_HOURS;
+  const minutes = Math.floor(Math.random() * 60);
+  const seconds = Math.floor(Math.random() * 60);
+  return now + ((hours * 60 + minutes) * 60 + seconds) * 1000;
+}
+
+function saveDeadline(value) {
+  try {
+    localStorage.setItem(STORAGE_KEY, value.toString());
+  } catch (error) {
+    console.warn("無法寫入 localStorage，倒數時間僅本次生效。", error);
+  }
+}
+
+function clearStoredDeadline() {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch (error) {
+    console.warn("無法清除 localStorage 中的截止時間。", error);
+  }
+}
+
+function getDeadline() {
+  const now = Date.now();
+
+  try {
+    const storedValue = localStorage.getItem(STORAGE_KEY);
+    if (storedValue) {
+      const parsed = parseInt(storedValue, 10);
+      if (!Number.isNaN(parsed) && parsed > now) {
+        return parsed;
+      }
+      clearStoredDeadline();
+    }
+  } catch (error) {
+    console.warn("無法讀取 localStorage，改用隨機截止時間。", error);
+  }
+
+  const newDeadline = getRandomDeadline();
+  saveDeadline(newDeadline);
+  return newDeadline;
+}
+
+function resetCountdown() {
+  clearStoredDeadline();
+  hasExpiredHandled = false;
+  deadline = getDeadline();
+  if (!countdownTimer) {
+    countdownTimer = setInterval(updateCountdown, 1000);
+  }
+  updateCountdown();
+  console.log("倒數已重置，新的截止時間：", new Date(deadline).toString());
+}
 
 // ====================================
 // 倒數計時功能
 // ====================================
 function updateCountdown() {
-  const now = new Date().getTime();
+  if (!deadline) {
+    deadline = getDeadline();
+  }
+
+  const now = Date.now();
   const distance = deadline - now;
 
   if (distance > 0) {
-    // 計算剩餘時間
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor(
       (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
@@ -1635,30 +1699,25 @@ function updateCountdown() {
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // 更新顯示
-    document.getElementById("days").textContent = String(days).padStart(2, "0");
-    document.getElementById("hours").textContent = String(hours).padStart(
-      2,
-      "0"
-    );
-    document.getElementById("minutes").textContent = String(minutes).padStart(
-      2,
-      "0"
-    );
-    document.getElementById("seconds").textContent = String(seconds).padStart(
-      2,
-      "0"
-    );
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
 
-    // 緊急狀態：少於24小時
+    if (daysEl) daysEl.textContent = String(days).padStart(2, "0");
+    if (hoursEl) hoursEl.textContent = String(hours).padStart(2, "0");
+    if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, "0");
+    if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, "0");
+
     const countdownSection = document.querySelector(".countdown-section");
-    if (days === 0 && hours < 24) {
-      countdownSection.classList.add("urgent");
-    } else {
-      countdownSection.classList.remove("urgent");
+    if (countdownSection) {
+      if (days === 0 && hours < 24) {
+        countdownSection.classList.add("urgent");
+      } else {
+        countdownSection.classList.remove("urgent");
+      }
     }
   } else {
-    // 時間結束
     handleTimeExpired();
   }
 }
@@ -1667,35 +1726,53 @@ function updateCountdown() {
 // 時間結束處理
 // ====================================
 function handleTimeExpired() {
-  document.getElementById("days").textContent = "00";
-  document.getElementById("hours").textContent = "00";
-  document.getElementById("minutes").textContent = "00";
-  document.getElementById("seconds").textContent = "00";
-  document.getElementById("countdownTitle").textContent = "🎉 Offer Ended";
+  if (hasExpiredHandled) return;
+  hasExpiredHandled = true;
+
+  if (countdownTimer) {
+    clearInterval(countdownTimer);
+    countdownTimer = null;
+  }
+
+  const daysEl = document.getElementById("days");
+  const hoursEl = document.getElementById("hours");
+  const minutesEl = document.getElementById("minutes");
+  const secondsEl = document.getElementById("seconds");
+  const titleEl = document.getElementById("countdownTitle");
+  const countdownSection = document.querySelector(".countdown-section");
+
+  if (daysEl) daysEl.textContent = "00";
+  if (hoursEl) hoursEl.textContent = "00";
+  if (minutesEl) minutesEl.textContent = "00";
+  if (secondsEl) secondsEl.textContent = "00";
+  if (titleEl) titleEl.textContent = "活動已結束";
+  if (countdownSection) countdownSection.classList.remove("urgent");
 
   const ctaButton = document.getElementById("ctaButton");
-  ctaButton.textContent = "Sold Out";
-  ctaButton.style.background = "#95a5a6";
-  ctaButton.style.cursor = "not-allowed";
-  ctaButton.onclick = null;
+  if (ctaButton) {
+    ctaButton.textContent = "活動已結束";
+    ctaButton.style.background = "#95a5a6";
+    ctaButton.style.cursor = "not-allowed";
+    ctaButton.onclick = null;
+  }
+
+  clearStoredDeadline();
 }
 
 // ====================================
 // CTA 按鈕點擊處理
 // ====================================
 function handleCTA() {
-  const now = new Date().getTime();
-  if (deadline > now) {
-    alert(
-      "🛒 Redirecting to checkout...\n\n✨ Special offer is still active!\n⏰ Don't miss out!"
-    );
+  if (!deadline) {
+    deadline = getDeadline();
+  }
 
-    // 這裡可以加入實際的跳轉邏輯
+  const now = Date.now();
+  if (deadline > now) {
+    alert("即將前往結帳，優惠仍在進行中，請把握時間！");
     // window.location.href = 'https://your-checkout-page.com';
   } else {
-    alert(
-      "😔 Sorry, this offer has ended.\n\nStay tuned for our next amazing deal!"
-    );
+    alert("活動已結束，敬請期待下一波優惠。");
   }
 }
 
@@ -1718,9 +1795,12 @@ function initializeHeader() {
     document.getElementById("ctaButton").textContent = ctaButtonText;
   }
 
+  hasExpiredHandled = false;
+  deadline = getDeadline();
+
   // 開始倒數計時
   updateCountdown();
-  setInterval(updateCountdown, 1000);
+  countdownTimer = setInterval(updateCountdown, 1000);
 }
 
 // ====================================
@@ -1728,18 +1808,17 @@ function initializeHeader() {
 // ====================================
 document.addEventListener("DOMContentLoaded", function () {
   initializeHeader();
-
-  // 檢查設定的時間是否有效
-  if (deadline <= new Date().getTime()) {
-    console.warn("警告：設定的截止時間已經過期！請更新 deadline 變數。");
-  }
 });
 
 // ====================================
 // 額外功能：取得剩餘時間（可選）
 // ====================================
 function getRemainingTime() {
-  const now = new Date().getTime();
+  if (!deadline) {
+    return null;
+  }
+
+  const now = Date.now();
   const distance = deadline - now;
 
   if (distance > 0) {

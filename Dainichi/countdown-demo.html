@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>倒數計時 Header Demo</title>
+  <style>
+    :root {
+      --brand: #ff4200;
+      --brand-dark: #e33a00;
+      --bar-bg-1: #b2002f;
+      --bar-bg-2: #970026;
+      --text: #f7f7f7;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.2);
+      --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: #f5f5f5;
+      color: #1f1f1f;
+    }
+    header {
+      background: linear-gradient(120deg, var(--bar-bg-1), var(--bar-bg-2));
+      padding: 18px 16px;
+      color: var(--text);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    }
+    .inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 1.6fr 1.1fr;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      align-items: flex-start;
+    }
+    .logo-img {
+      height: 80px;
+      width: auto;
+      display: none;
+      max-width: 200px;
+      object-fit: contain;
+    }
+    .logo-img.desktop { display: block; }
+    .logo-main {
+      font-weight: 900;
+      font-size: 32px;
+      letter-spacing: 0.02em;
+    }
+    .logo-sub {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+    .countdown-wrap {
+      text-align: center;
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+    }
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.12);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+    }
+    .label span:first-child { font-size: 14px; }
+    .countdown {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-variant-numeric: tabular-nums;
+    }
+    .time-box {
+      min-width: 68px;
+      height: 70px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.08));
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      display: grid;
+      place-items: center;
+      padding: 8px;
+    }
+    .time-box strong {
+      display: block;
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .time-box small {
+      color: #ffe6d7;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }
+    .colon {
+      color: #ffd7c2;
+      font-size: 26px;
+      font-weight: 800;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    }
+    .cta {
+      justify-self: end;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 22px;
+      border-radius: 999px;
+      border: none;
+      font-weight: 800;
+      font-size: 15px;
+      color: #fff;
+      background: radial-gradient(circle at 20% 20%, #ffd65c, #ffb800 55%, #e38400 100%),
+                  linear-gradient(120deg, var(--brand), var(--brand-dark));
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(227, 58, 0, 0.35);
+      text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+      white-space: nowrap;
+    }
+    .cta:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 34px rgba(227, 58, 0, 0.45);
+    }
+    .cta:active {
+      transform: translateY(0);
+    }
+    main {
+      padding: 32px 18px;
+      line-height: 1.6;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    @media (max-width: 960px) {
+      .inner {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        text-align: center;
+      }
+      .logo { align-items: center; }
+      .cta { justify-self: center; width: 100%; max-width: 360px; }
+      header { padding: 16px 12px; }
+    }
+    @media (max-width: 640px) {
+      header { padding: 12px 10px; }
+      .inner { gap: 12px; }
+      .label { display: none; }
+      .logo-main, .logo-sub { display: none; }
+      .logo-img.desktop { display: none; }
+      .logo-img.mobile {
+        display: block;
+        margin: 0 auto;
+        height: 28px;
+        max-width: 180px;
+      }
+      .countdown { gap: 6px; }
+      .time-box {
+        min-width: 52px;
+        height: 56px;
+        padding: 6px;
+      }
+      .time-box strong { font-size: 18px; }
+      .time-box small { font-size: 11px; }
+      .colon { font-size: 20px; }
+      .cta {
+        padding: 12px 18px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="inner">
+      <a class="logo" href="https://dglife.tw/" target="_blank" rel="noopener noreferrer">
+        <img class="logo-img desktop" src="images/logo新配色-DGLife德記生活-白色-02.png" alt="DGLife 德記生活">
+        <img class="logo-img mobile" src="images/白色-德記生活橫式logo.png" alt="DGLife 德記生活">
+      </a>
+      <div class="countdown-wrap" aria-live="polite">
+        <div class="label">
+          <span>⚡</span>
+          <span>限定優惠倒數</span>
+        </div>
+        <div class="countdown" data-target-time="2025-12-31T15:59:59Z">
+          <div class="time-box">
+            <strong data-unit="days">--</strong>
+            <small>天</small>
+          </div>
+          <div class="colon">:</div>
+          <div class="time-box">
+            <strong data-unit="hours">--</strong>
+            <small>時</small>
+          </div>
+          <div class="colon">:</div>
+          <div class="time-box">
+            <strong data-unit="minutes">--</strong>
+            <small>分</small>
+          </div>
+          <div class="colon">:</div>
+          <div class="time-box">
+            <strong data-unit="seconds">--</strong>
+            <small>秒</small>
+          </div>
+        </div>
+      </div>
+      <a class="cta" target="_blank" href="https://lin.ee/mVmOsJT">私訊LINE，揭曉驚喜價格 ➜</a>
+    </div>
+  </header>
+  <main>
+    <h1>倒數計時 Header Demo</h1>
+    <p>此範例示範在 Header 內放入 Logo、倒數計時與 CTA。可調整 <code>data-target-time</code> 設定目標截止時間（UTC ISO 格式）。到期後會自動顯示「活動已結束」。</p>
+    <p>行為邏輯：</p>
+    <ul>
+      <li>每秒更新倒數，使用者端時間僅用於計算差值。</li>
+      <li>若目標時間已過，顯示結束文案並關閉倒數。</li>
+      <li>行動裝置將排版改為多行，CTA 滿版。</li>
+    </ul>
+  </main>
+  <script>
+    // Countdown logic: reads target from data-target-time and updates every second.
+    const countdownEl = document.querySelector('.countdown');
+    const labelEl = document.querySelector('.label span:nth-child(2)');
+    const timeSpans = {
+      days: countdownEl?.querySelector('[data-unit="days"]'),
+      hours: countdownEl?.querySelector('[data-unit="hours"]'),
+      minutes: countdownEl?.querySelector('[data-unit="minutes"]'),
+      seconds: countdownEl?.querySelector('[data-unit="seconds"]'),
+    };
+
+    function pad(num) {
+      return String(num).padStart(2, '0');
+    }
+
+    function updateCountdown() {
+      if (!countdownEl) return;
+      const targetStr = countdownEl.getAttribute('data-target-time');
+      if (!targetStr) return;
+
+      const now = Date.now();
+      const target = Date.parse(targetStr);
+      if (Number.isNaN(target)) {
+        if (labelEl) labelEl.textContent = '時間格式錯誤';
+        return;
+      }
+
+      let diff = target - now;
+      if (diff <= 0) {
+        if (labelEl) labelEl.textContent = '活動已結束';
+        Object.values(timeSpans).forEach(span => span && (span.textContent = '00'));
+        clearInterval(timer);
+        return;
+      }
+
+      const seconds = Math.floor(diff / 1000);
+      const days = Math.floor(seconds / 86400);
+      const hours = Math.floor((seconds % 86400) / 3600);
+      const minutes = Math.floor((seconds % 3600) / 60);
+      const secs = seconds % 60;
+
+      timeSpans.days.textContent = pad(days);
+      timeSpans.hours.textContent = pad(hours);
+      timeSpans.minutes.textContent = pad(minutes);
+      timeSpans.seconds.textContent = pad(secs);
+    }
+
+    const timer = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>

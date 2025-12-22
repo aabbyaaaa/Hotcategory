@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>週期購 區塊 section-recommend</title>
+<style>
+  /* 基本版型 */
+  body { margin:0; padding:20px; font-family: Arial, sans-serif; background:#f7f7f7; }
+  .section { width:100%; box-sizing:border-box; }
+  .section-wide { max-width:1220px; margin:0 auto; }
+  .product-section { margin-top:20px; }
+  .desktop-only {} /* 需求時可加桌機限定邏輯 */
+  .banner-pc, .banner-mobile { display:block; }
+  @media (max-width:767px){ .banner-pc { display:none; } }
+  @media (min-width:768px){ .banner-mobile { display:none; } }
+
+  /* 標題橫幅 */
+  .product-section img { display:block; width:100%; height:auto; }
+
+  /* 商品網格 */
+  .product-grid { margin-top:12px; }
+  .product-list { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; }
+  .product-card { background:#fff; border:1px solid #e5e5e5; border-radius:8px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.05); transition:transform .15s ease, box-shadow .15s ease; }
+  .product-card:hover { transform:translateY(-2px); box-shadow:0 8px 16px rgba(0,0,0,0.1); }
+  .product-link { display:block; color:#222; text-decoration:none; }
+  .product-image { position:relative; width:100%; padding-bottom:100%; overflow:hidden; background:#fafafa; }
+  .product-image img { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; }
+  .product-body { padding:10px 12px 14px; }
+  .product-body h3, .product-body h4, .product-body p { margin:4px 0; line-height:1.4; }
+  .product-body h3 { font-size:14px; color:#e33a00; min-height:20px; }
+  .product-body h4 { font-size:14px; font-weight:600; }
+  .product-body h4 b { margin-right:6px; }
+  .product-body p { font-size:14px; display:flex; align-items:baseline; gap:6px; }
+  .price-original { color:#888; text-decoration:line-through; font-size:13px; }
+  .price-currency { color:#ff4200; font-weight:700; }
+  .price-sale { color:#ff4200; font-size:18px; font-weight:700; }
+  small { color:#666; }
+  /* 按鈕造型（簡化） */
+  .PD_btn { display:none; }
+
+  /* lazy placeholder */
+  img.lazyload-placeholder { filter: blur(3px); }
+</style>
+</head>
+<body>
+<div class="section section-wide product-section desktop-only section-recommend" id="section-recommend">
+  <div class="banner-pc">
+    <a href="https://www.momoshop.com.tw/category/DgrpCategory.jsp?d_code=2157600003&p_orderType=4" target="_blank">
+      <img class="lazyload lazyload-placeholder" data-original="https://img1.momoshop.com.tw/ecm/img/online/10/007/22/740/images/Area_title_01.png?t=1749638542958" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="標題-PC">
+    </a>
+  </div>
+  <div class="banner-mobile">
+    <a href="https://m.momoshop.com.tw/cateGoods.momo?cn=2157600003&page=1&sortType=4">
+      <img class="lazyload lazyload-placeholder" data-original="https://img1.momoshop.com.tw/ecm/img/online/10/007/22/740/images/Area_title_01-m.png?t=1749638542958" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="標題-手機">
+    </a>
+  </div>
+
+  <div class="product-box">
+    <div class="product-grid" data-pd-col-pc="5" data-pd-col-phone="2" data-pd-h3="5" data-pd-h4="1" data-pd-btn="box-2" data-pd-btn-pdgo="true" data-pd-btn-more="true">
+      <ul class="product-list">
+        <!-- 商品卡 0 -->
+        <li class="product-card js-product" data-id="9956842">
+          <a class="product-link js-product-link" data-urlpc="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=9956842" data-urlphone="https://m.momoshop.com.tw/goods.momo?i_code=9956842" href="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=9956842" target="_blank">
+            <div class="product-image">
+              <img class="lazyload js-product-image lazyload-placeholder" src="https://img1.momoshop.com.tw/ecm/img/online/10/007/22/740/images/loadinggif.gif?t=1749628523751" data-original="//img4.momoshop.com.tw/1722976022/goodsimg/0009/956/842/9956842_OR.jpg" alt="【添寧】 貼心敢動褲M-L/L-XL(16片x4包/14片x4包 箱購 褲型成人紙尿褲)">
+            </div>
+            <div class="product-body">
+              <h3><span class="js-product-tagline">全球失禁照護第一品牌</span></h3>
+              <h4><b class="js-product-brand">【添寧】</b><span class="js-product-name">貼心敢動褲M-L/L-XL(16片x4包/14片x4包 箱購 褲型成人紙尿褲)</span></h4>
+              <p><del class="price-original">1999</del><span class="price-currency">$</span><span class="price-sale">1,140</span></p>
+            </div>
+          </a>
+        </li>
+
+        <!-- 商品卡 1 -->
+        <li class="product-card js-product" data-id="7388696">
+          <a class="product-link js-product-link" data-urlpc="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=7388696" data-urlphone="https://m.momoshop.com.tw/goods.momo?i_code=7388696" href="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=7388696" target="_blank">
+            <div class="product-image">
+              <img class="lazyload js-product-image lazyload-placeholder" src="https://img1.momoshop.com.tw/ecm/img/online/10/007/22/740/images/loadinggif.gif?t=1749628523751" data-original="//img1.momoshop.com.tw/1729055233/goodsimg/0007/388/696/7388696_OR.jpg" alt="【橘子工坊】 洗衣潔淨1+2組(制菌力洗衣粉1350gx2包+領袖衣領精480mlx1瓶)">
+            </div>
+            <div class="product-body">
+              <h3><span class="js-product-tagline">破盤下殺現折2901</span></h3>
+              <h4><b class="js-product-brand">【橘子工坊】</b><span class="js-product-name">洗衣潔淨1+2組(制菌力洗衣粉1350gx2包+領袖衣領精480mlx1瓶)</span></h4>
+              <p><del class="price-original">799</del><span class="price-currency">$</span><span class="price-sale">559</span></p>
+            </div>
+          </a>
+        </li>
+
+        <!-- 商品卡 2 -->
+        <li class="product-card js-product" data-id="7573658">
+          <a class="product-link js-product-link" data-urlpc="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=7573658" data-urlphone="https://m.momoshop.com.tw/goods.momo?i_code=7573658" href="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=7573658" target="_blank">
+            <div class="product-image">
+              <img class="lazyload js-product-image lazyload-placeholder" src="https://img1.momoshop.com.tw/ecm/img/online/10/007/22/740/images/loadinggif.gif?t=1749628523751" data-original="//img3.momoshop.com.tw/1692983170/goodsimg/0007/573/658/7573658_OR.jpg" alt="【風倍清】 抗菌/除菌·消臭/除臭 衣物/織物噴霧 2+2超值組(高效除菌/綠茶清香/無香型 任選)">
+            </div>
+            <div class="product-body">
+              <h3><span class="js-product-tagline">日本熱銷NO1空氣清新專家日本熱銷NO1空氣清新專家</span></h3>
+              <h4><b class="js-product-brand">【風倍清】</b><span class="js-product-name">抗菌/除菌·消臭/除臭 衣物/織物噴霧 2+2超值組(高效除菌/綠茶清香/無香型 任選)</span></h4>
+              <p><del class="price-original">744</del><span class="price-currency">$</span><span class="price-sale">490</span></p>
+            </div>
+          </a>
+        </li>
+
+        <!-- 商品卡 3 -->
+        <li class="product-card js-product" data-id="9376531">
+          <a class="product-link js-product-link" data-urlpc="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=9376531" data-urlphone="https://m.momoshop.com.tw/goods.momo?i_code=9376531" href="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=9376531" target="_blank">
+            <div class="product-image">
+              <img class="lazyload js-product-image lazyload-placeholder" src="https://img1.momoshop.com.tw/ecm/img/online/10/007/22/740/images/loadinggif.gif?t=1749628523751" data-original="//img2.momoshop.com.tw/1693079961/goodsimg/0009/376/531/9376531_OR.jpg" alt="【優生】 超厚型純淨柔濕巾88抽(12包)">
+            </div>
+            <div class="product-body">
+              <h3><span class="js-product-tagline">破盤下殺現折2901</span></h3>
+              <h4><b class="js-product-brand">【優生】</b><span class="js-product-name">超厚型純淨柔濕巾88抽(12包)</span></h4>
+              <p><del class="price-original">900</del><span class="price-currency">$</span><span class="price-sale">659</span></p>
+            </div>
+          </a>
+        </li>
+
+        <!-- 商品卡 4 -->
+        <li class="product-card js-product" data-id="7386493">
+          <a class="product-link js-product-link" data-urlpc="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=7386493" data-urlphone="https://m.momoshop.com.tw/goods.momo?i_code=7386493" href="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=7386493" target="_blank">
+            <div class="product-image">
+              <img class="lazyload js-product-image lazyload-placeholder" src="https://img1.momoshop.com.tw/ecm/img/online/10/007/22/740/images/loadinggif.gif?t=1749628523751" data-original="//img4.momoshop.com.tw/1742014944/goodsimg/0007/386/493/7386493_OR.jpg" alt="【橘子工坊】 天然無香精制菌洗衣精-洗淨病毒升級版1800ml x2瓶(洗淨RSV/冠狀病毒/AB型流感病毒)">
+            </div>
+            <div class="product-body">
+              <h3><span class="js-product-tagline">洗淨RSV,冠狀,AB流感病毒</span></h3>
+              <h4><b class="js-product-brand">【橘子工坊】</b><span class="js-product-name">天然無香精制菌洗衣精-洗淨病毒升級版1800ml x2瓶(洗淨RSV/冠狀病毒/AB型流感病毒)</span></h4>
+              <p><del class="price-original">680</del><span class="price-currency">$</span><span class="price-sale">599</span></p>
+            </div>
+          </a>
+        </li>
+
+        <!-- 商品卡 5 -->
+        <li class="product-card js-product" data-id="8494189">
+          <a class="product-link js-product-link" data-urlpc="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8494189" data-urlphone="https://m.momoshop.com.tw/goods.momo?i_code=8494189" href="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8494189" target="_blank">
+            <div class="product-image">
+              <img class="lazyload js-product-image lazyload-placeholder" src="https://img1.momoshop.com.tw/ecm/img/online/10/007/22/740/images/loadinggif.gif?t=1749628523751" data-original="//img1.momoshop.com.tw/1692979538/goodsimg/0008/494/189/8494189_OR.jpg" alt="【奈森克林】 水滴將純水加大柔濕巾60抽(30包/箱;每箱附濕巾蓋2入)">
+            </div>
+            <div class="product-body">
+              <h3><span class="js-product-tagline">MOMO獨家訂制款</span></h3>
+              <h4><b class="js-product-brand">【奈森克林】</b><span class="js-product-name">水滴將純水加大柔濕巾60抽(30包/箱;每箱附濕巾蓋2入)</span></h4>
+              <p><del class="price-original">1650</del><span class="price-currency">$</span><span class="price-sale">649</span></p>
+            </div>
+          </a>
+        </li>
+
+        <!-- 商品卡 6 -->
+        <li class="product-card js-product" data-id="9719570">
+          <a class="product-link js-product-link" data-urlpc="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=9719570" data-urlphone="https://m.momoshop.com.tw/goods.momo?i_code=9719570" href="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=9719570" target="_blank">
+            <div class="product-image">
+              <img class="lazyload js-product-image lazyload-placeholder" src="https://img1.momoshop.com.tw/ecm/img/online/10/007/22/740/images/loadinggif.gif?t=1749628523751" data-original="//img2.momoshop.com.tw/1693148917/goodsimg/0009/719/570/9719570_OR.jpg" alt="【日本大王】 日本大王愛適多 超透氣舒適復健褲L_10片/包x6(箱購出貨)">
+            </div>
+            <div class="product-body">
+              <h3><span class="js-product-tagline">日本原裝進口 品質值得信賴</span></h3>
+              <h4><b class="js-product-brand">【日本大王】</b><span class="js-product-name">日本大王愛適多 超透氣舒適復健褲L_10片/包x6(箱購出貨)</span></h4>
+              <p><del class="price-original">2394</del><span class="price-currency">$</span><span class="price-sale">1,434</span></p>
+            </div>
+          </a>
+        </li>
+
+        <!-- 商品卡 7 -->
+        <li class="product-card js-product" data-id="8439204">
+          <a class="product-link js-product-link" data-urlpc="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8439204" data-urlphone="https://m.momoshop.com.tw/goods.momo?i_code=8439204" href="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8439204" target="_blank">
+            <div class="product-image">
+              <img class="lazyload js-product-image lazyload-placeholder" src="https://img1.momoshop.com.tw/ecm/img/online/10/007/22/740/images/loadinggif.gif?t=1749628523751" data-original="//img3.momoshop.com.tw/1692976138/goodsimg/0008/439/204/8439204_OR.jpg" alt="【倍潔雅】 倍潔雅柔軟舒適抽取式衛生紙(150抽56包/箱)">
+            </div>
+            <div class="product-body">
+              <h3><span class="js-product-tagline">挑戰單抽最低價！單抽最便宜！</span></h3>
+              <h4><b class="js-product-brand">【倍潔雅】</b><span class="js-product-name">倍潔雅柔軟舒適抽取式衛生紙(150抽56包/箱)</span></h4>
+              <p><del class="price-original">1399</del><span class="price-currency">$</span><span class="price-sale">719</span></p>
+            </div>
+          </a>
+        </li>
+
+        <!-- 商品卡 8 -->
+        <li class="product-card js-product" data-id="7596865">
+          <a class="product-link js-product-link" data-urlpc="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=7596865" data-urlphone="https://m.momoshop.com.tw/goods.momo?i_code=7596865" href="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=7596865" target="_blank">
+            <div class="product-image">
+              <img class="lazyload js-product-image lazyload-placeholder" src="https://img1.momoshop.com.tw/ecm/img/online/10/007/22/740/images/loadinggif.gif?t=1749628523751" data-original="//img1.momoshop.com.tw/1692808608/goodsimg/0007/596/865/7596865_OR.jpg" alt="【克潮靈】 除濕桶補充包36入-玫瑰香/檜木香/去霉味(3入/組-12組/箱-箱購)">
+            </div>
+            <div class="product-body">
+              <h3><span class="js-product-tagline">通過SGS無毒測試，使用更安心</span></h3>
+              <h4><b class="js-product-brand">【克潮靈】</b><span class="js-product-name">除濕桶補充包36入-玫瑰香/檜木香/去霉味(3入/組-12組/箱-箱購)</span></h4>
+              <p><del class="price-original">948</del><span class="price-currency">$</span><span class="price-sale">649</span></p>
+            </div>
+          </a>
+        </li>
+
+        <!-- 商品卡 9 -->
+        <li class="product-card js-product" data-id="8400909">
+          <a class="product-link js-product-link" data-urlpc="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8400909" data-urlphone="https://m.momoshop.com.tw/goods.momo?i_code=8400909" href="https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8400909" target="_blank">
+            <div class="product-image">
+              <img class="lazyload js-product-image lazyload-placeholder" src="https://img1.momoshop.com.tw/ecm/img/online/10/007/22/740/images/loadinggif.gif?t=1749628523751" data-original="//img2.momoshop.com.tw/1722094741/goodsimg/0008/400/909/8400909_OR.jpg" alt="【包大人】 乾爽吸收 替換式尿片50*24cm(46片x6包/箱購 搭配成人紙尿褲)">
+            </div>
+            <div class="product-body">
+              <h3><span class="js-product-tagline">破盤下殺現折2901</span></h3>
+              <h4><b class="js-product-brand">【包大人】</b><span class="js-product-name">乾爽吸收 替換式尿片50*24cm(46片x6包/箱購 搭配成人紙尿褲)</span></h4>
+              <p><del class="price-original">1656</del><span class="price-currency">$</span><span class="price-sale">1,194</span></p>
+            </div>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 裝置判斷替換連結
+  function isMobile() {
+    return /iphone|ipad|ipod|android|mobile/i.test(navigator.userAgent);
+  }
+  document.addEventListener('click', function (e) {
+    const anchor = e.target.closest('.js-product a');
+    if (!anchor) return;
+    const urlPc = anchor.getAttribute('data-urlpc');
+    const urlPhone = anchor.getAttribute('data-urlphone');
+    if (isMobile() && urlPhone) anchor.href = urlPhone;
+    if (!isMobile() && urlPc) anchor.href = urlPc;
+  });
+
+  // 簡易 lazy load
+  (function() {
+    const imgs = Array.from(document.querySelectorAll('img.lazyload'));
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            const data = img.getAttribute('data-original');
+            if (data) { img.src = data; img.classList.remove('lazyload-placeholder'); }
+            obs.unobserve(img);
+          }
+        });
+      }, { rootMargin: '200px' });
+      imgs.forEach(img => obs.observe(img));
+    } else {
+      const loadAll = () => imgs.forEach(img => {
+        const data = img.getAttribute('data-original');
+        if (data) { img.src = data; img.classList.remove('lazyload-placeholder'); }
+      });
+      window.addEventListener('scroll', loadAll);
+      window.addEventListener('resize', loadAll);
+      loadAll();
+    }
+  })();
+</script>
+</body>
+</html>

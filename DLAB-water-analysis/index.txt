@@ -344,7 +344,7 @@ e:["$","footer",null,{"className":"bg-red text-slate-800 border-t border-zinc-20
     "@type": "DigitalDocument",
     "name": "DLAB水質檢測儀規格比較",
     "fileFormat": "application/pdf",
-    "url": "https://dgs.com.tw/hotcategory/DLAB-water-analysis/DLAB智慧水質檢測設備.pdf"
+    "url": "https://dgs.com.tw/DLAB智慧水質檢測設備.pdf"
   },
   {
     "@context": "https://schema.org",

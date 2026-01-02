@@ -346,7 +346,7 @@ f:["$","$L1b",null,{"title":"單參數","subtitle":"桌上型 水質檢測儀","
     "@type": "DigitalDocument",
     "name": "DLAB水質檢測儀規格比較",
     "fileFormat": "application/pdf",
-    "url": "../DLAB智慧水質檢測設備.pdf"
+    "url": "https://dgs.com.tw/DLAB智慧水質檢測設備.pdf"
   },
   {
     "@context": "https://schema.org",

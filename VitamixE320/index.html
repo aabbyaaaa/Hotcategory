@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     
+    <!-- 字體預連線 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Noto+Sans+TC:wght@400;700;900&display=swap">
     <!-- 组件样式 -->
     <link rel="stylesheet" href="snippet.css">
     <link rel="stylesheet" href="responsive.css">
-    <script src="snippet.js"></script>
+    <script src="snippet.js" defer></script>
     
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -25,7 +29,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- 搜尋引擎優化 (SEO) -->
 <meta name="description" content="限時獨家特談組｜Vitamix E320 全食物調理機限時優惠中，再送 5 大好禮！數量有限，錯過只能買貴。立即私訊 LINE 下單！">
 <meta name="keywords" content="Vitamix, E320, 全食物調理機, 食品調理機, 高速果汁機, 食譜機, 特談優惠, 限時優惠, 養生調理機, 陳月卿推薦, 私訊下單">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 
 <!-- Open Graph 標籤（社群分享）-->
 <meta property="og:title" content="Vitamix E320 限時優惠｜獨家特談組享限時特價 + 五大贈禮，只在 LINE 好友限定！">
@@ -38,8 +42,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
    <!-- Favicon -->
     <link rel="icon" href="https://cdn.shopify.com/s/files/1/0204/3327/2854/files/awinb-4k7xa-001.ico?v=1755058876"><!-- 要改 -->
     
-    <!-- 標準網址 (防止重複內容) -->
-    <link rel="canonical" href=""><!-- 要改 -->
     
     <style>
       /* 基礎設定 */
@@ -511,12 +513,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .cta-price {
   color: #ffeb3b;
   font-weight: 900;
-  animation: blink 1.2s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
 }
 
 @keyframes icon-bounce {
@@ -596,7 +592,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .cta-text {
     max-width: 100%;
     padding-right: 0;
-    text-align: left;
+    text-align: center;
   }
 
   .cta-title {
@@ -615,19 +611,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 
 /* header css */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Noto+Sans+TC:wght@400;700;900&display=swap");
 
-.header {
-  background: linear-gradient(135deg, #c1032f 0%, #a8022a 100%);
-  color: white;
-  padding: 15px 0;
- box-shadow: 0 -6px 10px 5px rgba(8, 0, 2, 0.904); /* 改這行 */
-
-  position: sticky;
-  top: 0;
-  z-index: 100;
-
-}
 
 .container1 {
   max-width: 1200px;
@@ -899,6 +883,56 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
+
+/* ===== 手機 / 平板底部固定 CTA 條 ===== */
+.mobile-sticky-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: linear-gradient(90deg, #a8022a, #c1032f, #e8294c);
+  box-shadow: 0 -4px 24px rgba(193, 3, 47, 0.5);
+  padding: 13px 20px;
+  padding-bottom: max(13px, env(safe-area-inset-bottom));
+}
+
+.mobile-sticky-cta a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.mobile-sticky-cta-text {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.mobile-sticky-cta-price {
+  color: #FFE066;
+  font-weight: 900;
+}
+
+.mobile-sticky-cta-icon {
+  font-size: 1.3rem;
+  animation: icon-bounce 1.2s infinite;
+  display: inline-block;
+}
+
+@media (max-width: 1024px) {
+  .mobile-sticky-cta {
+    display: block;
+  }
+  body {
+    padding-bottom: 62px;
+  }
+}
+
     </style>
   </head>
 
@@ -1042,7 +1076,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     本優惠為 <strong>LINE 好友限定</strong>，官網不會上架，也不會公開販售。
   </p>
   <p style="margin:8px 0 0;">
-    本次特談組合由德記向Vitamix原廠特別爭取，僅限本次活動提供，外部通路無法購得。。
+    本次特談組合由德記向Vitamix原廠特別爭取，僅限本次活動提供，外部通路無法購得。
   </p>
   <p style="margin:8px 0 0;">
     此優惠為 <strong>內部限定方案</strong>，請勿外傳，以免影響後續與原廠的合作安排。
@@ -1063,12 +1097,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-           <div class="wpb_wrapper">
-                    <h3 style="text-align: left;padding:0px 20px;font-size: 20px;font-weight: 600;">
-
-
-                    </h3>
-                  </div>
                 </div>
 
 
@@ -1110,7 +1138,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="cta-text">
     <span class="cta-title">立即搶購！獨家特談組</span>
     <span class="cta-subtitle">
-      私訊LINE，揭曉💲💲💲 <span class="cta-price">驚喜價格</span>
+      私訊LINE，立即揭曉 <span class="cta-price">驚喜價格</span>
     </span>
   </div>
   <div class="cta-icon">👉</div>
@@ -1400,7 +1428,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="cta-title">🔥 立即私訊LINE搶購</span>
     <span class="cta-subtitle">
       挑戰全網最低價，問問就知道 <span class="cta-price">多划算</span>🙌</span>
-    </span>
   </div>
   <div class="cta-icon">👉</div>
 </a>
@@ -1565,6 +1592,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           links.forEach(function (link) {
             link.addEventListener("click", function (e) {
               const href = this.getAttribute("href");
+              if (!href || href === "#") return;
               const target = document.querySelector(href);
 
               if (target) {
@@ -1760,23 +1788,6 @@ function handleTimeExpired() {
 }
 
 // ====================================
-// CTA 按鈕點擊處理
-// ====================================
-function handleCTA() {
-  if (!deadline) {
-    deadline = getDeadline();
-  }
-
-  const now = Date.now();
-  if (deadline > now) {
-    alert("即將前往結帳，優惠仍在進行中，請把握時間！");
-    // window.location.href = 'https://your-checkout-page.com';
-  } else {
-    alert("活動已結束，敬請期待下一波優惠。");
-  }
-}
-
-// ====================================
 // 初始化設定
 // ====================================
 function initializeHeader() {
@@ -1870,23 +1881,19 @@ window.addEventListener("resize", function () {
 });
 </script>
 
- <script> 
-
-var header = $('.header');
-
-$(window).scroll(function(e){
-    if(header.offset().top !== 0){
-        if(!header.hasClass('shadow')){
-            header.addClass('shadow');
-        }
-    }else{
-        header.removeClass('shadow');
-    }
-});
-
-</script>
 
 
+
+
+<!-- 手機 / 平板底部固定 CTA 條 -->
+<div class="mobile-sticky-cta">
+  <a href="https://lin.ee/doGYkLf" target="_blank">
+    <span class="mobile-sticky-cta-text">
+      私訊LINE，立即揭曉 <span class="mobile-sticky-cta-price">驚喜價格</span>
+    </span>
+    <span class="mobile-sticky-cta-icon">👉</span>
+  </a>
+</div>
 
   </body>
 </html>

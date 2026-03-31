@@ -992,7 +992,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="banner">
             <a href="https://lin.ee/doGYkLf" target="_blank">
-        <img src="https://dgs.com.tw/pic/00/01/42/11-de5125dddaa29c23.jpg" alt="主視覺橫幅">
+        <img id="banner-main" src="https://dgs.com.tw/pic/00/01/42/11-de5125dddaa29c23.jpg" alt="主視覺橫幅">
         </a>
     </div>
 
@@ -1120,6 +1120,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="vc_single_image-wrapper vc_box_border_grey">
                       <img
             
+                        id="banner-content"
                         src="https://dgs.com.tw/pic/00/01/42/13-1eaf09cd1bea5d17.jpg"
                         class="vc_single_image-img attachment-full"
                         alt="內容物"
@@ -1895,5 +1896,16 @@ window.addEventListener("resize", function () {
   </a>
 </div>
 
+  <script>
+    (function() {
+      var now   = new Date();
+      var start = new Date('2026-04-01');
+      var end   = new Date('2026-06-01');
+      if (now >= start && now < end) {
+        document.getElementById('banner-main').src    = 'https://cdn.shopify.com/s/files/1/0204/3327/2854/files/2926x1167_09c6e160-b494-4ba8-bba3-4c2ed3f34049.jpg?v=1774961156';
+        document.getElementById('banner-content').src = 'https://cdn.shopify.com/s/files/1/0204/3327/2854/files/7b7d777fb78d708cc729fe122535ca37_71f8aa9a-03a3-48af-9500-aeb36f9fe78c.jpg?v=1774961156';
+      }
+    })();
+  </script>
   </body>
 </html>

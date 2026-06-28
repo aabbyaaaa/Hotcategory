@@ -196,7 +196,7 @@
     @media (max-width: 640px) {
       .site-header-inner {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 0.35rem;
         padding: 0.6rem 1rem 0.5rem;
       }
@@ -2485,6 +2485,10 @@
         margin-bottom: 0.8rem;
       }
 
+      .titrator-header .sec-promo {
+        margin-top: 0.75rem;
+      }
+
       .titrator-eyebrow {
         font-size: 0.75rem;
       }
@@ -4634,7 +4638,7 @@
   .bb-spec-note::before{content:"·";margin-right:.4rem;color:var(--ink-50);}
   @media (max-width:1024px){.bb-grid{grid-template-columns:repeat(3,1fr);}}
   @media (max-width:720px){.bb-grid{grid-template-columns:repeat(2,1fr);gap:.8rem;}}
-  @media (max-width:480px){.brand-buy-inner{padding:2.5rem 1rem;}.bb-card-title{font-size:.9rem;}}
+  @media (max-width:480px){.brand-buy-inner{padding:2.5rem 1rem;}.bb-card-title{font-size:.9rem;}.bb-spec-note{display:none;}}
   </style>
 
   <!-- BRAND 玻璃量具（box_buy 風格・Tab 切換 3 群・共 23 品） -->
@@ -5250,6 +5254,7 @@
       let startX = 0;
       let startShift = 0;
       let activePointerId = null;
+      let moveHistory = [];
 
       movePyrexCarousel(carousel, Number(carousel.dataset.activePage || 0));
 
@@ -5268,6 +5273,7 @@
         startX = event.clientX;
         startShift = Number(carousel.dataset.currentShift || 0);
         activePointerId = event.pointerId;
+        moveHistory = [];
       });
 
       viewport.addEventListener("pointermove", (event) => {
@@ -5284,6 +5290,10 @@
         viewport.classList.add("is-dragging");
         event.preventDefault();
 
+        const now = Date.now();
+        moveHistory.push({ x: event.clientX, t: now });
+        while (moveHistory.length > 1 && now - moveHistory[0].t > 100) moveHistory.shift();
+
         setPyrexCarouselShift(carousel, startShift + deltaX);
       });
 
@@ -5293,7 +5303,24 @@
         isDragging = false;
         viewport.classList.remove("is-dragging");
         viewport.releasePointerCapture?.(event.pointerId);
-        movePyrexCarousel(carousel, Number(carousel.dataset.activePage || 0));
+
+        const { maxShift, pageCount } = getPyrexCarouselMetrics(carousel);
+        const pageShift = pageCount > 1 ? maxShift / (pageCount - 1) : maxShift;
+        const fromPage = maxShift > 0 ? Math.round((-startShift / maxShift) * (pageCount - 1)) : 0;
+        const lastX = moveHistory.length > 0 ? moveHistory[moveHistory.length - 1].x : startX;
+        const totalDelta = startX - lastX;
+
+        let velSign = 0;
+        if (moveHistory.length >= 2) {
+          const a = moveHistory[0], b = moveHistory[moveHistory.length - 1];
+          const dt = b.t - a.t;
+          if (dt > 0) { const v = (a.x - b.x) / dt; if (Math.abs(v) > 0.3) velSign = v > 0 ? 1 : -1; }
+        }
+
+        const distSign = Math.abs(totalDelta) > pageShift * 0.25 ? (totalDelta > 0 ? 1 : -1) : 0;
+        const targetPage = Math.min(Math.max(fromPage + (velSign || distSign), 0), pageCount - 1);
+
+        movePyrexCarousel(carousel, targetPage);
 
         if (didDrag) {
           window.setTimeout(() => {
@@ -5360,6 +5387,7 @@
       let startX = 0;
       let startShift = 0;
       let activePointerId = null;
+      let moveHistory = [];
 
       moveBrandCarousel(panel, Number(panel.dataset.activePage || 0));
 
@@ -5378,6 +5406,7 @@
         startX = event.clientX;
         startShift = Number(panel.dataset.currentShift || 0);
         activePointerId = event.pointerId;
+        moveHistory = [];
       });
 
       viewport.addEventListener("pointermove", (event) => {
@@ -5394,6 +5423,10 @@
         didDrag = true;
         event.preventDefault();
 
+        const now = Date.now();
+        moveHistory.push({ x: event.clientX, t: now });
+        while (moveHistory.length > 1 && now - moveHistory[0].t > 100) moveHistory.shift();
+
         setBrandCarouselShift(panel, startShift + deltaX);
       });
 
@@ -5403,7 +5436,24 @@
         isDragging = false;
         viewport.classList.remove("is-dragging");
         viewport.releasePointerCapture?.(event.pointerId);
-        moveBrandCarousel(panel, Number(panel.dataset.activePage || 0));
+
+        const { maxShift, pageCount } = getCarouselMetrics(panel);
+        const pageShift = pageCount > 1 ? maxShift / (pageCount - 1) : maxShift;
+        const fromPage = maxShift > 0 ? Math.round((-startShift / maxShift) * (pageCount - 1)) : 0;
+        const lastX = moveHistory.length > 0 ? moveHistory[moveHistory.length - 1].x : startX;
+        const totalDelta = startX - lastX;
+
+        let velSign = 0;
+        if (moveHistory.length >= 2) {
+          const a = moveHistory[0], b = moveHistory[moveHistory.length - 1];
+          const dt = b.t - a.t;
+          if (dt > 0) { const v = (a.x - b.x) / dt; if (Math.abs(v) > 0.3) velSign = v > 0 ? 1 : -1; }
+        }
+
+        const distSign = Math.abs(totalDelta) > pageShift * 0.25 ? (totalDelta > 0 ? 1 : -1) : 0;
+        const targetPage = Math.min(Math.max(fromPage + (velSign || distSign), 0), pageCount - 1);
+
+        moveBrandCarousel(panel, targetPage);
 
         if (didDrag) {
           window.setTimeout(() => {
@@ -5485,7 +5535,7 @@
       const { viewport } = getTdCarouselMetrics(carousel);
       if (!viewport) return;
 
-      let dragging = false, didDrag = false, startX = 0, startShift = 0, ptId = null;
+      let dragging = false, didDrag = false, startX = 0, startShift = 0, ptId = null, moveHistory = [];
 
       moveTdCarousel(carousel, 0);
       viewport.addEventListener("dragstart", e => e.preventDefault());
@@ -5497,6 +5547,7 @@
         startX = e.clientX;
         startShift = Number(carousel.dataset.tdShift || 0);
         ptId = e.pointerId;
+        moveHistory = [];
       });
 
       viewport.addEventListener("pointermove", e => {
@@ -5507,6 +5558,9 @@
         didDrag = true;
         carousel.querySelector(".td-list").classList.add("is-dragging");
         e.preventDefault();
+        const now = Date.now();
+        moveHistory.push({ x: e.clientX, t: now });
+        while (moveHistory.length > 1 && now - moveHistory[0].t > 100) moveHistory.shift();
         setTdCarouselShift(carousel, startShift + dx);
       });
 
@@ -5516,7 +5570,24 @@
         const track = carousel.querySelector(".td-list");
         if (track) track.classList.remove("is-dragging");
         try { viewport.releasePointerCapture(e.pointerId); } catch(_) {}
-        moveTdCarousel(carousel, Number(carousel.dataset.tdPage || 0));
+
+        const { maxShift, pageCount } = getTdCarouselMetrics(carousel);
+        const pageShift = pageCount > 1 ? maxShift / (pageCount - 1) : maxShift;
+        const fromPage = maxShift > 0 ? Math.round((-startShift / maxShift) * (pageCount - 1)) : 0;
+        const lastX = moveHistory.length > 0 ? moveHistory[moveHistory.length - 1].x : startX;
+        const totalDelta = startX - lastX;
+
+        let velSign = 0;
+        if (moveHistory.length >= 2) {
+          const a = moveHistory[0], b = moveHistory[moveHistory.length - 1];
+          const dt = b.t - a.t;
+          if (dt > 0) { const v = (a.x - b.x) / dt; if (Math.abs(v) > 0.3) velSign = v > 0 ? 1 : -1; }
+        }
+
+        const distSign = Math.abs(totalDelta) > pageShift * 0.25 ? (totalDelta > 0 ? 1 : -1) : 0;
+        const targetPage = Math.min(Math.max(fromPage + (velSign || distSign), 0), pageCount - 1);
+
+        moveTdCarousel(carousel, targetPage);
         if (didDrag) setTimeout(() => { didDrag = false; }, 150);
       }
 

@@ -784,6 +784,9 @@
       background: transparent;
     }
 
+    /* PYREX section time-gated until 2026-07-15 00:00 (Taiwan) */
+    .pyrex-gated { display: none !important; }
+
     .pyrex-wrap {
       position: relative;
       z-index: 2;
@@ -3492,7 +3495,7 @@
     <div class="site-header-inner">
       <a class="site-brand" href="https://dgs.com.tw/" target="_blank" rel="noopener"><img src="下載.svg" alt="德記儀器" height="38"></a>
       <nav class="site-nav" aria-label="頁面導覽">
-        <a href="#pyrex">PYREX 血清瓶</a>
+        <a href="#pyrex" class="pyrex-gated">PYREX 血清瓶</a>
         <a href="#water">DLAB 水質檢測儀</a>
         <a href="#stirrer">・頂置式攪拌機</a>
         <a href="#dlab-pipette">・微量吸管</a>
@@ -3567,7 +3570,7 @@
   <div class="momo-scroll-deco-area">
     <div class="momo-scroll-deco" aria-hidden="true" style="display:none"></div>
 
-  <section class="pyrex-showcase" id="pyrex" aria-label="PYREX 血清試藥瓶">
+  <section class="pyrex-showcase pyrex-gated" id="pyrex" aria-label="PYREX 血清試藥瓶">
     <div class="pyrex-wrap">
       <header class="sec-head">
         <div>
@@ -4814,7 +4817,7 @@
         <a class="bb-card" href="https://dgs.com.tw/product/headCode/BR-28405" target="_blank" rel="noopener">
           <div class="bb-card-img"><img src="product-images/BR-28405.jpg" alt="BRAND 刻度吸管 AS級 TYPE3 茶色刻度" loading="lazy" width="230" height="230"></div>
           <div class="bb-card-body">
-            <div class="bb-tags"><span class="bb-tag bb-tag--grade">AS級</span><span class="bb-tag bb-tag--amber">茶色遮光</span></div>
+            <div class="bb-tags"><span class="bb-tag bb-tag--grade">AS級</span><span class="bb-tag bb-tag--amber">茶色耐蝕刻度</span></div>
             <h3 class="bb-card-title"><span class="bb-name">刻度吸管 TYPE3 茶色刻度</span></h3>
             <p class="bb-spec"><span class="bb-spec-k">容量</span><span class="bb-spec-v">0.5mL～25mL</span></p>
           </div>
@@ -4838,7 +4841,7 @@
         <a class="bb-card" href="https://dgs.com.tw/product/headCode/BR-30502" target="_blank" rel="noopener">
           <div class="bb-card-img"><img src="product-images/BR-30502.jpg" alt="BRAND 球型吸管 AS級 茶色刻度" loading="lazy" width="230" height="230"></div>
           <div class="bb-card-body">
-            <div class="bb-tags"><span class="bb-tag bb-tag--grade">AS級</span><span class="bb-tag bb-tag--amber">茶色遮光</span></div>
+            <div class="bb-tags"><span class="bb-tag bb-tag--grade">AS級</span><span class="bb-tag bb-tag--amber">茶色耐蝕刻度</span></div>
             <h3 class="bb-card-title"><span class="bb-name">球型吸管 茶色刻度</span></h3>
             <p class="bb-spec"><span class="bb-spec-k">容量</span><span class="bb-spec-v">1mL～50mL</span></p>
           </div>
@@ -5082,7 +5085,7 @@
         <h2 class="sec-title">活動品牌</h2>
       </header>
       <div class="bw-grid">
-        <a class="bw-card" href="#pyrex" aria-label="PYREX 系列">
+        <a class="bw-card pyrex-gated" href="#pyrex" aria-label="PYREX 系列">
           <img src="brand-logos/pyrex.png" alt="PYREX" loading="lazy">
           <span class="bw-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></span>
         </a>
@@ -5997,6 +6000,18 @@
       if (pillBtn) {
         pillBtn.addEventListener("click", () => {
           widget.classList.add("is-open");
+        });
+      }
+    })();
+  </script>
+
+  <script>
+    // Reveal PYREX section on 2026-07-15 00:00 Taiwan time (UTC+8), timezone-independent
+    (function () {
+      var revealTime = Date.UTC(2026, 6, 15, 0, 0, 0) - 8 * 3600 * 1000;
+      if (Date.now() >= revealTime) {
+        document.querySelectorAll(".pyrex-gated").forEach(function (el) {
+          el.classList.remove("pyrex-gated");
         });
       }
     })();

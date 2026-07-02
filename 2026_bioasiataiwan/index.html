@@ -3567,6 +3567,127 @@
   </main>
 
 
+  <!-- ============================================================
+       實體展現場展出品項 · 產品輪播（單排無限跑馬燈，hover 顯示文字）
+       ============================================================ -->
+  <style>
+    .exhibit-lineup {
+      --el-gap: 1.1rem;
+      position: relative;
+      padding: 3.6rem 0 4.2rem;
+      background: var(--background);
+      overflow: hidden;
+    }
+    .exhibit-lineup .el-head { text-align: center; margin: 0 auto 2.2rem; padding: 0 1.25rem; max-width: 780px; }
+    .exhibit-lineup .el-eyebrow {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: var(--font-mono); font-size: .72rem; letter-spacing: .22em; font-weight: 600;
+      color: var(--blue); margin: 0 0 .7rem; text-transform: uppercase;
+    }
+    .exhibit-lineup .el-eyebrow svg { width: 13px; height: 13px; }
+    .exhibit-lineup .el-title {
+      font-size: clamp(1.5rem, 3.4vw, 2.15rem); font-weight: 900; color: var(--navy);
+      margin: 0 0 .7rem; letter-spacing: .01em;
+    }
+    .exhibit-lineup .el-title b { color: var(--blue); }
+    .exhibit-lineup .el-sub { font-size: .95rem; color: var(--ink-70); margin: 0; line-height: 1.7; }
+    .exhibit-lineup .el-sub .hl { color: var(--lime); font-weight: 700; }
+    .exhibit-lineup .el-sub b { color: var(--blue); font-weight: 800; }
+
+    .exhibit-lineup .el-marquees { display: grid; gap: var(--el-gap); }
+    .exhibit-lineup .marquee {
+      display: flex; overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+    }
+    .exhibit-lineup .marquee-track {
+      display: flex; gap: var(--el-gap); width: max-content; padding: .4rem 0;
+      animation: el-marquee var(--duration, 72s) linear infinite;
+    }
+    .exhibit-lineup .marquee:hover .marquee-track { animation-play-state: paused; }
+    @keyframes el-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    .exhibit-lineup .el-card {
+      position: relative; flex: 0 0 auto; width: 13.5rem; margin: 0;
+      background: #fff; border: 1px solid var(--hairline); border-radius: 16px;
+      box-shadow: 0 1px 2px rgba(0, 49, 88, 0.05), 0 10px 26px rgba(0, 49, 88, 0.06);
+      overflow: hidden; transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .exhibit-lineup .el-card:hover {
+      transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0, 49, 88, 0.14);
+      border-color: rgba(0, 104, 181, 0.28);
+    }
+    .exhibit-lineup .el-card-img {
+      aspect-ratio: 1 / 1; background: #fff;
+      display: flex; align-items: center; justify-content: center; padding: 14px;
+    }
+    .exhibit-lineup .el-card-img img { max-width: 100%; max-height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+    .exhibit-lineup .el-card-cap {
+      position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 1.7rem .9rem .85rem;
+      background: linear-gradient(to top, rgba(0, 49, 88, 0.95) 12%, rgba(0, 49, 88, 0.72) 55%, transparent);
+      transform: translateY(101%); opacity: 0; transition: transform .3s ease, opacity .3s ease;
+    }
+    .exhibit-lineup .el-card:hover .el-card-cap { transform: translateY(0); opacity: 1; }
+    .exhibit-lineup .el-card-brand {
+      display: block; font-family: var(--font-mono); font-size: .68rem; font-weight: 600;
+      letter-spacing: .08em; color: var(--lime-light); margin-bottom: .2rem;
+    }
+    .exhibit-lineup .el-card-name { display: block; font-size: .92rem; font-weight: 700; color: #fff; line-height: 1.35; }
+
+    @media (max-width: 640px) {
+      .exhibit-lineup .el-card { width: 10.5rem; }
+      .exhibit-lineup .el-card-name { font-size: .85rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .exhibit-lineup .marquee-track { animation: none; }
+      .exhibit-lineup .marquee { overflow-x: auto; }
+    }
+  </style>
+
+  <section class="exhibit-lineup" id="exhibit-lineup" aria-label="實體展現場展出品項">
+    <header class="el-head">
+      <p class="el-eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.2" fill="currentColor" stroke="none"/></svg>
+        ON-SITE EXHIBITION
+      </p>
+      <h2 class="el-title">2026 亞洲生技展｜<b>重點展品</b></h2>
+      <p class="el-sub">更多精選品項將於展會現場展出，歡迎至 <b>M1013</b> 攤位參觀</p>
+    </header>
+
+    <div class="el-marquees">
+      <div class="marquee" style="--duration: 72s;">
+        <div class="marquee-track">
+          <figure class="el-card"><div class="el-card-img"><img src="現場展覽展品/1、PYREX血清瓶.png" alt="PYREX 血清瓶" loading="lazy"></div><figcaption class="el-card-cap"><span class="el-card-brand">PYREX</span><span class="el-card-name">血清瓶</span></figcaption></figure>
+          <figure class="el-card"><div class="el-card-img"><img src="現場展覽展品/2、DWK WHEATON COMPLEREPAK.png" alt="DWK WHATON COMPLETEPAK" loading="lazy"></div><figcaption class="el-card-cap"><span class="el-card-brand">DWK</span><span class="el-card-name">WHATON COMPLETEPAK</span></figcaption></figure>
+          <figure class="el-card"><div class="el-card-img"><img src="現場展覽展品/3、NANOENTEK自動細胞計數儀.png" alt="NanoEntek 自動細胞計數儀" loading="lazy"></div><figcaption class="el-card-cap"><span class="el-card-brand">NanoEntek</span><span class="el-card-name">自動細胞計數儀</span></figcaption></figure>
+          <figure class="el-card"><div class="el-card-img"><img src="現場展覽展品/4、NANOENTEK C-CHIP塑膠計算盤.jpg" alt="NanoEntek C-Chip 塑膠計算盤" loading="lazy"></div><figcaption class="el-card-cap"><span class="el-card-brand">NanoEntek</span><span class="el-card-name">C-Chip 塑膠計算盤</span></figcaption></figure>
+          <figure class="el-card"><div class="el-card-img"><img src="現場展覽展品/5、NANOENTEK ExTransfection.png" alt="NanoEntek ExTransfection 電穿孔系統" loading="lazy"></div><figcaption class="el-card-cap"><span class="el-card-brand">NanoEntek</span><span class="el-card-name">ExTransfection 電穿孔系統</span></figcaption></figure>
+          <figure class="el-card"><div class="el-card-img"><img src="現場展覽展品/6、BRUKLE 無菌採樣產品.png" alt="BRUKLE 無菌採樣產品" loading="lazy"></div><figcaption class="el-card-cap"><span class="el-card-brand">BRUKLE</span><span class="el-card-name">無菌採樣產品</span></figcaption></figure>
+          <figure class="el-card"><div class="el-card-img"><img src="現場展覽展品/7、DGLABO 塑膠滅菌刻度吸管.jpg" alt="DG Labo 塑膠滅菌刻度吸管" loading="lazy"></div><figcaption class="el-card-cap"><span class="el-card-brand">DG Labo</span><span class="el-card-name">塑膠滅菌刻度吸管</span></figcaption></figure>
+          <figure class="el-card"><div class="el-card-img"><img src="現場展覽展品/8、Heathrow 生物危害廢棄物收集盒.png" alt="Heathrow 生物危害廢棄物收集盒" loading="lazy"></div><figcaption class="el-card-cap"><span class="el-card-brand">Heathrow</span><span class="el-card-name">生物危害廢棄物收集盒</span></figcaption></figure>
+          <figure class="el-card"><div class="el-card-img"><img src="現場展覽展品/9、LICK 無塵超軔擦拭布.png" alt="LICK 無塵超軔擦拭布" loading="lazy"></div><figcaption class="el-card-cap"><span class="el-card-brand">LICK</span><span class="el-card-name">無塵超軔擦拭布</span></figcaption></figure>
+          <figure class="el-card"><div class="el-card-img"><img src="現場展覽展品/10、DLAB微量吸管 .jpg" alt="DLAB 微量吸管 可調式 精密型" loading="lazy"></div><figcaption class="el-card-cap"><span class="el-card-brand">DLAB</span><span class="el-card-name">微量吸管 可調式 精密型</span></figcaption></figure>
+          <figure class="el-card"><div class="el-card-img"><img src="現場展覽展品/11、DLAB 電動吸取器.png" alt="DLAB 電動吸取器 LEVO PLUS" loading="lazy"></div><figcaption class="el-card-cap"><span class="el-card-brand">DLAB</span><span class="el-card-name">電動吸取器 LEVO PLUS</span></figcaption></figure>
+          <figure class="el-card"><div class="el-card-img"><img src="現場展覽展品/12、BRAND 體積量測設備.png" alt="BRAND 體積量測設備" loading="lazy"></div><figcaption class="el-card-cap"><span class="el-card-brand">BRAND</span><span class="el-card-name">體積量測設備</span></figcaption></figure>
+          <figure class="el-card"><div class="el-card-img"><img src="現場展覽展品/13；FRESHLIANCE 溫溼度紀錄器.png" alt="FreshLiance 溫溼度紀錄器" loading="lazy"></div><figcaption class="el-card-cap"><span class="el-card-brand">FreshLiance</span><span class="el-card-name">溫溼度紀錄器</span></figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var track = document.querySelector('#exhibit-lineup .marquee-track');
+      if (!track) return;
+      track.querySelectorAll('.el-card').forEach(function (card) {
+        var clone = card.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
+      });
+    })();
+  </script>
+
+
   <div class="momo-scroll-deco-area">
     <div class="momo-scroll-deco" aria-hidden="true" style="display:none"></div>
 
@@ -5098,7 +5219,7 @@
           <span class="bw-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></span>
         </a>
         <a class="bw-card" href="#giveaway" aria-label="NanoEnTek C-Chip">
-          <img src="brand-logos/nanoentek.png" alt="NanoEnTek" loading="lazy">
+          <img src="brand-logos/NanoEnte-Logo-W (1).png" alt="NanoEnTek" loading="lazy">
           <span class="bw-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></span>
         </a>
       </div>

@@ -3502,6 +3502,7 @@
         <a href="#titrator">・滴定＆分注</a>
         <a href="#brand-glass">BRAND 玻璃量具</a>
         <a href="#giveaway">C-CHIP 塑膠計算盤</a>
+        <a href="#pipette-promo">DG LABO 滅菌吸管</a>
       </nav>
     </div>
   </header>
@@ -5172,6 +5173,132 @@
   </div>
 
 
+  <!-- 塑膠滅菌刻度吸管 · 買箱加碼 -->
+  <style>
+    .t4-promo { background: #F4F7FB; padding: 3rem 1.5rem 3.5rem; }
+    .t4-inner { max-width: 1024px; margin: 0 auto; }
+    /* 標題區沿用全站 .brand-buy-header / .bb-eyebrow / .sec-title / .sec-promo */
+    .t4-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 1024px) { .t4-grid { grid-template-columns: repeat(12, 1fr); } }
+    .t4-main, .t4-card { background: #fff; border-radius: 24px; border: 1px solid rgba(241, 245, 249, .8);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .04); transition: transform .3s ease, box-shadow .3s ease; }
+    .t4-main:hover, .t4-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0, 0, 0, .08); }
+    .t4-main { grid-column: 1 / -1; padding: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden;
+      text-decoration: none; color: inherit; }
+    @media (min-width: 1024px) { .t4-main { grid-column: span 5; } }
+    .t4-main-img { width: 12rem; height: 16rem; border-radius: 16px; border: 1px solid #e2e8f0;
+      background: linear-gradient(to top right, #f8fafc, #f1f5f9); box-shadow: inset 0 2px 4px rgba(0, 0, 0, .06);
+      display: grid; place-items: center; margin-bottom: 2rem; position: relative; z-index: 2; overflow: hidden; }
+    .t4-main-img img { width: 88%; height: 88%; object-fit: contain; mix-blend-mode: multiply; }
+    .t4-main-cap { text-align: center; position: relative; z-index: 2; }
+    .t4-main-cap h3 { margin: 0 0 .5rem; font-size: 1.5rem; font-weight: 700; color: #1e293b; }
+    .t4-tagline { display: inline-flex; align-items: center; gap: .35rem; margin: 0; padding: .35rem .85rem;
+      border-radius: 999px; background: #eff6ff; color: #1d4ed8; font-size: .82rem; font-weight: 800; }
+    .t4-tagline svg { width: 14px; height: 14px; }
+    .t4-offers { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 640px) { .t4-offers { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .t4-offers { grid-column: span 7; } }
+    .t4-card { padding: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: space-between; position: relative; overflow: hidden; }
+    .t4-qtywrap { text-align: center; width: 100%; margin-bottom: 1.5rem; position: relative; z-index: 1; }
+    .t4-qty { display: flex; align-items: center; justify-content: center; gap: .25rem; margin: 0 0 .5rem; }
+    .t4-qty span { font-size: 1.25rem; font-weight: 700; color: #334155; }
+    .t4-qty b { font-size: 3rem; font-weight: 900; color: #2563eb; line-height: 1; }
+    .t4-qty b.rose { color: #e11d48; }
+    .t4-reward { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; width: 100%; max-width: 160px;
+      padding: .375rem 1rem; border-radius: 8px; font-weight: 800; }
+    .t4-reward svg { width: 16px; height: 16px; }
+    .t4-reward--blue { background: #eff6ff; color: #1d4ed8; }
+    .t4-reward--rose { background: #f43f5e; color: #fff; box-shadow: 0 2px 8px rgba(244, 63, 94, .35); }
+    .t4-gift-img { width: 8rem; height: 8rem; border-radius: 16px; background: #f8fafc; border: 1px solid #f1f5f9;
+      display: grid; place-items: center; margin-bottom: 1.5rem; position: relative; z-index: 1; overflow: hidden; transition: transform .3s ease; }
+    .t4-card:hover .t4-gift-img { transform: scale(1.05); }
+    .t4-gift-img img { width: 82%; height: 82%; object-fit: contain; mix-blend-mode: multiply; }
+    .t4-gift-img--rose { background: #fff; border-color: #ffe4e6; box-shadow: 0 1px 2px rgba(0, 0, 0, .05); }
+    .t4-gift { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; }
+    .t4-gift-name { font-size: 1.125rem; font-weight: 700; color: #475569; margin-bottom: .25rem; }
+    .t4-card--2 .t4-gift-name { color: #1e293b; }
+    .t4-gift-pill { font-size: .875rem; font-weight: 500; padding: .25rem .75rem; border-radius: 999px; background: #f1f5f9; color: #475569; }
+    .t4-gift-pill--rose { font-weight: 700; background: #ffe4e6; color: #be123c; }
+    .t4-card--2 { background: linear-gradient(to bottom, #fff, rgba(255, 241, 242, .3)); border-color: #ffe4e6; box-shadow: 0 8px 30px rgba(0, 0, 0, .06); }
+    .t4-bgicon { position: absolute; z-index: 0; display: grid; place-items: center; pointer-events: none; transition: transform .5s ease; }
+    .t4-card--1 .t4-bgicon { right: -26px; bottom: -26px; width: 128px; height: 128px; border-radius: 50%;
+      border: 3px solid rgba(37, 99, 235, .20); color: #2563eb; }
+    .t4-card--1 .t4-bgicon svg { width: 54px; height: 54px; opacity: .24; }
+    .t4-card--2 .t4-bgicon { right: -14px; bottom: -20px; width: 118px; height: 118px; color: #e11d48; }
+    .t4-card--2 .t4-bgicon svg { width: 92px; height: 92px; opacity: .16; }
+    .t4-card:hover .t4-bgicon { transform: scale(1.08); }
+    .t4-card--2::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; z-index: 3;
+      background: linear-gradient(90deg, transparent, #f43f5e 28%, #fb7185 50%, #f43f5e 72%, transparent); }
+    .t4-foot { margin-top: 3rem; display: flex; flex-direction: column; align-items: center; }
+    .t4-cta { display: inline-flex; align-items: center; gap: .5rem; padding: 1rem 2rem; border-radius: 999px; background: #1E3A8A; color: #fff;
+      font-size: 1rem; font-weight: 800; text-decoration: none; box-shadow: 0 10px 15px rgba(30, 58, 138, .2); transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+    .t4-cta:hover { background: #172f6e; transform: translateY(-1px); box-shadow: 0 20px 25px rgba(30, 58, 138, .3); }
+    .t4-cta svg { width: 20px; height: 20px; transition: transform .2s ease; }
+    .t4-cta:hover svg { transform: translateX(4px); }
+  </style>
+
+  <section class="t4-promo" id="pipette-promo" aria-label="塑膠滅菌刻度吸管 買箱加碼優惠">
+    <div class="t4-inner">
+      <header class="brand-buy-header">
+        <p class="bb-eyebrow">DG LABO Sterile Plastic Serological Pipette</p>
+        <h2 class="sec-title"><img class="title-logo" src="brand-logos/dg-labo-horizontal.png" alt="DG Labo"> 塑膠滅菌刻度吸管</h2>
+        <a class="sec-promo" href="https://dgs.com.tw/product/headCode/G21111-00001" target="_blank" rel="noopener"><span class="promo-item">買越多 · 省越多 →</span></a>
+      </header>
+
+      <div class="t4-grid">
+        <a class="t4-main" href="https://dgs.com.tw/product/headCode/G21111-00001" target="_blank" rel="noopener">
+          <div class="t4-main-img"><img src="現場展覽展品/7、DGLABO 塑膠滅菌刻度吸管.jpg" alt="DG Labo 塑膠滅菌刻度吸管"></div>
+          <div class="t4-main-cap">
+            <h3>塑膠滅菌刻度吸管</h3>
+            <span class="t4-tagline">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              適用市面上 9 成吸管吸取器
+            </span>
+          </div>
+        </a>
+
+        <div class="t4-offers">
+          <div class="t4-card t4-card--1">
+            <span class="t4-bgicon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
+            <div class="t4-qtywrap">
+              <p class="t4-qty"><span>買</span><b>1</b><span>箱</span></p>
+              <span class="t4-reward t4-reward--blue">半價加購</span>
+            </div>
+            <div class="t4-gift-img"><img src="現場展覽展品/11、DLAB 電動吸取器.png" alt="DLAB 電動吸取器"></div>
+            <div class="t4-gift">
+              <span class="t4-gift-name">電動吸取器</span>
+              <span class="t4-gift-pill">1 支</span>
+            </div>
+          </div>
+
+          <div class="t4-card t4-card--2">
+            <span class="t4-bgicon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="5" x="2" y="7" rx="1"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/></svg></span>
+            <div class="t4-qtywrap">
+              <p class="t4-qty"><span>買</span><b class="rose">3</b><span>箱</span></p>
+              <span class="t4-reward t4-reward--rose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="5" x="2" y="7" rx="1"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/></svg>
+                免費送 FREE
+              </span>
+            </div>
+            <div class="t4-gift-img t4-gift-img--rose"><img src="現場展覽展品/11、DLAB 電動吸取器.png" alt="DLAB 電動吸取器"></div>
+            <div class="t4-gift">
+              <span class="t4-gift-name">電動吸取器</span>
+              <span class="t4-gift-pill t4-gift-pill--rose">1 支</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t4-foot">
+        <a class="t4-cta" href="https://dgs.com.tw/product/headCode/G21111-00001" target="_blank" rel="noopener">
+          立即選購 塑膠滅菌刻度吸管
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
   <style>
   /* ===== 活動品牌 品牌牆（白 logo → 深藍藥丸卡）===== */
   .brand-wall{position:relative;background:linear-gradient(180deg,#fff 0%,var(--blue-soft) 100%);
@@ -5220,6 +5347,10 @@
         </a>
         <a class="bw-card" href="#giveaway" aria-label="NanoEnTek C-Chip">
           <img src="brand-logos/NanoEnte-Logo-W (1).png" alt="NanoEnTek" loading="lazy">
+          <span class="bw-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></span>
+        </a>
+        <a class="bw-card" href="#pipette-promo" aria-label="DG Labo 滅菌吸管">
+          <img src="brand-logos/dg-labo-horizontal-white.png" alt="DG Labo" loading="lazy">
           <span class="bw-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></span>
         </a>
       </div>
